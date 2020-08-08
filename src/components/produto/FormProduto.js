@@ -4,14 +4,19 @@ import gerarID from '../../utils/GerarID';
 class FormProduto extends Component {
    constructor(props) {
       super(props);
-      this.state = {}
-      this.limparCampos();
+      this.state = {
+         id: gerarID(),
+         nome: '',
+         descricao: '',
+         preco: '',
+      }
       this.handleChange = this.handleChange.bind(this)
    }
 
    handleChange(event){
       const { name, value } = event.target
       this.setState({ [name]: value })
+      console.log(this.state)
    }
 
    limparCampos(){
@@ -21,7 +26,7 @@ class FormProduto extends Component {
          descricao: '',
          preco: '',
       }
-      this.setState(produto)
+      this.setState({...produto})
    }
 
    render() {

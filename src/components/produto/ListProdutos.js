@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 class ListProdutos extends Component {
    render() {
@@ -33,7 +34,11 @@ function Tabela(props){
             <TableBody>
                {produtos.map(produto => (
                   <TableRow key={produto.id}>
-                     <TableCell>{produto.nome}</TableCell>
+                     <TableCell>
+                        <Link to={() =>  "/produto/" + produto.id}>
+                           {produto.nome}
+                        </Link>
+                     </TableCell>
                      <TableCell>{produto.descricao}</TableCell>
                      <TableCell>{produto.preco}</TableCell>
                   </TableRow>

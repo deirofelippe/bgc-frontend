@@ -21,7 +21,9 @@ class App extends Component {
       event.preventDefault()
       const produtos = this.state.produtos
       produtos.push(produto)
-      this.setState(produtos)
+      this.setState({ produtos: [] }, () => {
+         this.setState({produtos})
+      })
    }
 
    render(){
