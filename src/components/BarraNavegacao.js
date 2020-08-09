@@ -3,15 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ({
-   root: {
-      '& > * + *': {
-         marginLeft: theme.spacing(2),
-      },
-   },
-}));
-
 function BarraNavegacao() {
+   const useStyles = makeStyles((theme) => ({
+      root: {
+         '& > * + *': {
+            marginLeft: theme.spacing(2),
+         },
+      },
+   }));
    const classes = useStyles();
 
    return (

@@ -12,17 +12,39 @@ class App extends Component {
             { "id": "2", "nome": "Videogame", "descricao": "b", "preco": "6000", },
             { "id": "3", "nome": "Monitor", "descricao": "c", "preco": "3000", },
             { "id": "4", "nome": "Meri", "descricao": "d", "preco": "2000", },
-         ]
+         ],
       }
       this.cadastrarProduto = this.cadastrarProduto.bind(this)
+      this.deletarProduto = this.deletarProduto.bind(this)
+      this.editarProduto = this.editarProduto.bind(this)
+   }
+
+   deletarProduto(indiceDeletar){
+      this.setState(state => {
+         const produtos = state.produtos.filter((produto, indice) => indice !== indiceDeletar)
+         return { produtos }
+      })
+   }
+
+   editarProduto(event, produtoEditado){
+      event.preventDefault()
+      this.setState(state => {
+         const produtos = state.produtos.map((produto) => {
+            if(produto.id === produtoEditado.id){
+               return produtoEditado
+            }
+            return produto
+         })
+
+         return { produtos }
+      })
    }
 
    cadastrarProduto(event, produto){
       event.preventDefault()
-      const produtos = this.state.produtos
-      produtos.push(produto)
-      this.setState({ produtos: [] }, () => {
-         this.setState({produtos})
+      this.setState(state => {
+         const produtos = [...state.produtos, produto]
+         return { produtos }
       })
    }
 
@@ -35,7 +57,11 @@ class App extends Component {
             </nav>
             <section>
                <main>
-                  <Rotas lista={produtos} handleSubmit={this.cadastrarProduto} />
+                  <Rotas lista={produtos} 
+                     handleSubmit={this.cadastrarProduto} 
+                     handleDelete={this.deletarProduto} 
+                     handleEdit={this.editarProduto}
+                  />
                </main>
             </section>
          </Router>

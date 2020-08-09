@@ -1,26 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-class ListProdutos extends Component {
-   render() {
-      const produtos = this.props.lista
-      return (
-         <Tabela produtos={produtos} />
-      )
-   }
-}
-
-const useStyles = makeStyles({
-   table: {
-      minWidth: 650,
-   },
-});
-
-function Tabela(props){
-   const { produtos } = props
+function ListProdutos(props) {
+   const useStyles = makeStyles({
+      table: {
+         minWidth: 650,
+      },
+   });
    const classes = useStyles()
+   const produtos = props.lista
+
    return (
       <TableContainer component={Paper}>
          <Table className={classes.table} aria-label="simple table">
@@ -29,18 +20,28 @@ function Tabela(props){
                   <TableCell>Nome</TableCell>
                   <TableCell>Descrição</TableCell>
                   <TableCell>Preço</TableCell>
+                  <TableCell>#</TableCell>
+                  <TableCell>#</TableCell>
+                  <TableCell>#</TableCell>
                </TableRow>
             </TableHead>
             <TableBody>
-               {produtos.map(produto => (
+               {produtos.map((produto, indice) => (
                   <TableRow key={produto.id}>
                      <TableCell>
-                        <Link to={() =>  "/produto/" + produto.id}>
-                           {produto.nome}
-                        </Link>
+                        <Link to={`/produto/${produto.id}`}>{produto.nome}</Link>
                      </TableCell>
                      <TableCell>{produto.descricao}</TableCell>
                      <TableCell>{produto.preco}</TableCell>
+                     <TableCell>
+                        <Link to={`/reserva/${produto.id}`}>Comprar</Link>
+                     </TableCell>
+                     <TableCell>
+                        <Link to={`/edit/produto/${produto.id}`}>Editar</Link>
+                     </TableCell>
+                     <TableCell>
+                        <button onClick={() => props.handleDelete(indice)}>Deletar</button>
+                     </TableCell>
                   </TableRow>
                ))}
             </TableBody>
