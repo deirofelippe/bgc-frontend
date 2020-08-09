@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 
 function Produto(props) {
    const { id } = useParams()
-   const produto = props.lista.find(produto => produto.id === id)
+   const produto = props.lista.produtos.find(produto => produto.id === id)
    
    return (
       <>

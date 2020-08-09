@@ -5,7 +5,7 @@ function EditProduto(props) {
    const { id } = useParams()
 
    const iniciarEstado = () => {
-      const produtos = props.lista
+      const produtos = props.lista.produtos
       return produtos.find(produtoEncontrar => produtoEncontrar.id === id)
    }
 

@@ -4,6 +4,7 @@ import ListProdutos from './produto/ListProdutos';
 import FormProduto from './produto/FormProduto';
 import EditProduto from './produto/EditProduto';
 import Produto from './produto/Produto';
+import Reserva from './reserva/Reserva';
 
 class Rotas extends Component {
    render() {
@@ -20,6 +21,9 @@ class Rotas extends Component {
             </Route>
             <Route path="/edit/produto/:id">
                <EditProduto lista={this.props.lista} handleEdit={this.props.handleEdit} />
+            </Route>
+            <Route path="/reserva/:id">
+               <Reserva lista={this.props.lista} />
             </Route>
          </Switch>
       );

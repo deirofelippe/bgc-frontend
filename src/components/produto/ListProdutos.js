@@ -10,7 +10,7 @@ function ListProdutos(props) {
       },
    });
    const classes = useStyles()
-   const produtos = props.lista
+   const produtos = props.lista.produtos
 
    return (
       <TableContainer component={Paper}>
