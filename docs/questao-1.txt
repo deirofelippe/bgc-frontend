@@ -1,0 +1,45 @@
+Envio do desafio: https://airtable.com/shrfdsPA2eUdbMvRk
+1 - 
+
+escrever sobre o q faz, pra q serve, pontos fortes e fracos
+
+api rest, react, redux, redux saga, serverless framework, 
+aws (api gateway, lambda, step functions, dynamodb, rds, kinesis data stream, s3, cognito, cloudwatch, cloudformation)
+
+
+
+
+react: 
+componentes é um conjunto de coisas ja prontos; 
+estados; 
+muitos componentes que muda seus estados e renderiza a pagina, como chat, notificacoes e timeline;
+
+redux: 
+ha muitas mudanças de estado, entao facilita a organizacao;
+store, salva os estados em 1 local centralizado e n nos componentes; 
+action, pedido p mudar o estado; 
+reduce, como vai mudar o estado;
+pessoa interage com a aplicacao, o action é acionado, o reduce recebe o action e muda o estado no store;
+dispatcher: gerencia as acoes;
+
+redux saga:
+execucao da mudança de estado em paralelo;
+
+serverless: 
+abstrair partes da aplicacao p o desenvolvedor focar so em seu produto, n precisa gastar tempo gerenciando a infraestrutura
+
+store dispara uma acao, a acao passa pelo reducer, reducer vai manipular o store e entregar um novo
+
+
+
+
+api rest, react, redux, redux saga, serverless framework, aws (api gateway, lambda, step functions, dynamodb, rds, kinesis data stream, s3, cognito, cloudwatch, cloudformation)
+
+
+
+
+
+
+
+
+
