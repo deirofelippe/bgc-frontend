@@ -1,4 +1,4 @@
-export default function gerarID(){
+const gerarID = () => {
    const data = new Date()
    const ano = data.getFullYear().toString()
    const mes = data.getMonth().toString()
@@ -10,3 +10,4 @@ export default function gerarID(){
    
    return id;
 }
+export default gerarID;

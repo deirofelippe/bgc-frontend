@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import gerarID from '../../utils/GerarID';
 import { useParams } from 'react-router-dom';
 
-function Reserva(props) {
+const Reserva = props => {
    const { id } = useParams()
    const usuarioInicial = {
       id: gerarID(),
@@ -34,7 +34,7 @@ function Reserva(props) {
    }
    
    return (
-      <>
+      <div>
          {produto.nome}
          {produto.preco}
          <form>
@@ -44,7 +44,7 @@ function Reserva(props) {
             Endereço: <input type="text" name="endereco" onChange={handleChange}/>
             <button onClick={handleSubmit}>Fazer reserva</button>
          </form>
-      </>
+      </div>
    );
 }
 

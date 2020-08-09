@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-function EditProduto(props) {
+const EditProduto = props => {
    const { id } = useParams()
 
    const iniciarEstado = () => {
@@ -15,7 +15,6 @@ function EditProduto(props) {
       const { name, value } = event.target
       setProduto({ ...produto, [name]: value })
    }
-   //quando editar, redireciona
 
    return (
       <form>

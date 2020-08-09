@@ -1,61 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import gerarID from '../../utils/GerarID';
 
-class FormProduto extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         id: gerarID(),
-         nome: '',
-         descricao: '',
-         preco: '',
-      }
-      this.handleChange = this.handleChange.bind(this)
-   }
+const FormProduto = props => {
+   const [produto, setProduto] = useState({
+      id: gerarID(),
+      nome: '',
+      descricao: '',
+      preco: '',
+   })
 
-   handleChange(event){
+   const handleChange = event => {
       const { name, value } = event.target
-      this.setState({ [name]: value })
+      setProduto({ ...produto, [name]: value })
    }
 
-   limparCampos(){
-      const produto = {
+   const limparCampos = () => {
+      const produtoLimpo = {
          id: gerarID(),
          nome: '',
          descricao: '',
          preco: '',
       }
-      this.setState({...produto})
+      setProduto({...produtoLimpo})
    }
 
-   render() {
       return (
          <form onSubmit={(event) => {
-            this.props.handleSubmit(event, this.state)
-            this.limparCampos()
+            props.handleSubmit(event, produto)
+            limparCampos()
          }}>
             <label>Nome: </label>
             <input type="text" 
                name="nome" 
-               value={this.state.nome} 
-               onChange={this.handleChange} />
+               value={produto.nome} 
+               onChange={handleChange} />
 
             <label>Descrição: </label>
             <input type="text" 
                name="descricao" 
-               value={this.state.descricao} 
-               onChange={this.handleChange} />
+               value={produto.descricao} 
+               onChange={handleChange} />
             
             <label>Preço: </label>
             <input type="text" 
                name="preco" 
-               value={this.state.preco} 
-               onChange={this.handleChange} />
+               value={produto.preco} 
+               onChange={handleChange} />
 
             <input type="submit" value="Cadastrar" />
          </form>
       );
-   }
 }
 
 export default FormProduto;
