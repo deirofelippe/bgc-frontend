@@ -1,11 +1,11 @@
 const pegarDados = () => {
    return {
       produtos: [
-         { "id": "1", "nome": "Notebook", "descricao": "a", "preco": "5000", },
-         { "id": "2", "nome": "Videogame", "descricao": "b", "preco": "6000", },
-         { "id": "3", "nome": "Monitor", "descricao": "c", "preco": "3000", },
-         { "id": "4", "nome": "Meri", "descricao": "d", "preco": "2000", },
-         { "id": "5", "nome": "Meri", "descricao": "d", "preco": "2000", },
+         { "nome": "PC Gamer", "descricao": "a", "preco": "5000", },
+         { "nome": "Videogame", "descricao": "b", "preco": "6000", },
+         { "nome": "Monitor", "descricao": "c", "preco": "3000", },
+         { "nome": "Meri", "descricao": "d", "preco": "2000", },
+         { "nome": "Meri", "descricao": "d", "preco": "2000", },
       ],
       reservas: [
          { "idProduto":"1", "idUsuario":"1", "quantidade":"2", "dataReserva":"aa", "numeroReserva":"000"},
@@ -15,12 +15,12 @@ const pegarDados = () => {
          { "idProduto":"2", "idUsuario":"6", "quantidade":"1", "dataReserva":"cd", "numeroReserva":"456"},
       ],
       usuario: [
-         { "id":"1", "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
-         { "id":"2", "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
-         { "id":"3", "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
-         { "id":"4", "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
-         { "id":"5", "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
-         { "id":"6", "nome":"Feh", "email":"a@gmail.com", "cep":"666666-666", "endereco":"a", },
+         { "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
+         { "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
+         { "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
+         { "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
+         { "nome":"a", "email":"a@gmail.com", "cep":"11111-111", "endereco":"a", },
+         { "nome":"Feh", "email":"a@gmail.com", "cep":"666666-666", "endereco":"a", },
       ]
    }
 }

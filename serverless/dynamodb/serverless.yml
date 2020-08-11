@@ -1,0 +1,78 @@
+service: dynamodb
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: sa-east-1
+  environment:
+    HANDLER_PRODUTO: src/controllers/${self:provider.environment.INICIAL_MAIUSCULA}Controller
+    INICIAL_MAIUSCULA: Produto
+    INICIAL_MINUSCULA: produto
+    TABELA_PRODUTO: Produto
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "*"
+
+functions:
+  criarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}.criar
+    events:
+      - http:
+          path: produto
+          method: post
+          cors: true
+  listarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}.listar
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+  buscarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}.buscar
+    events:
+      - http:
+          path: produto/{id}
+          method: get
+          cors: true
+  editarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}.editar
+    events:
+      - http:
+          path: produto
+          method: put
+          cors: true
+  deletarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}.deletar
+    events:
+      - http:
+          path: produto/{id}
+          method: delete
+          cors: true
+
+resources:
+  Resources:
+    TodosDynamoDbTable:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:provider.environment.TABELA_PRODUTO}
