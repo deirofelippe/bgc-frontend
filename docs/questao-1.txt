@@ -44,8 +44,15 @@ redux: é uma lib q facilita o gerenciamento de estado no react. ao inves de um 
 
 lambda function:
 api gateway:
+intercepta requisicao e chama uma lambda function referente ao endpoint da requisicao
+
 s3:
+
 dynamodb:
+n tem schema, atributos e tipos definidos
+entao um item pode ter atributos totalmente diferentes de outros itens
+em sistemas q precisa de atributos e tipos bem definidos, n é bom usar dynamobd q é um nosql
+
 step functions:
 
 

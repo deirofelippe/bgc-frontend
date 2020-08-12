@@ -5,7 +5,7 @@ const pegarDados = () => {
          { "nome": "Videogame", "descricao": "b", "preco": "6000", },
          { "nome": "Monitor", "descricao": "c", "preco": "3000", },
          { "nome": "Meri", "descricao": "d", "preco": "2000", },
-         { "nome": "Meri", "descricao": "d", "preco": "2000", },
+         { "nome": "a", "descricao": "d", "preco": "s", },
       ],
       reservas: [
          { "idProduto":"1", "idUsuario":"1", "quantidade":"2", "dataReserva":"aa", "numeroReserva":"000"},
