@@ -6,8 +6,11 @@ escrever sobre o q faz, pra q serve, pontos fortes e fracos
 api rest, react, redux, redux saga, serverless framework, 
 aws (api gateway, lambda, step functions, dynamodb, rds, kinesis data stream, s3, cognito, cloudwatch, cloudformation)
 
+store dispara uma acao, a acao passa pelo reducer, reducer vai manipular o store e entregar um novo
 
+api rest, react, redux, redux saga, serverless framework, aws (api gateway, lambda, step functions, dynamodb, rds, kinesis data stream, s3, cognito, cloudwatch, cloudformation)
 
+========================= EXPLICAÇÕES 1
 
 react: 
 componentes é um conjunto de coisas ja prontos; 
@@ -28,18 +31,34 @@ execucao da mudança de estado em paralelo;
 serverless: 
 abstrair partes da aplicacao p o desenvolvedor focar so em seu produto, n precisa gastar tempo gerenciando a infraestrutura
 
-store dispara uma acao, a acao passa pelo reducer, reducer vai manipular o store e entregar um novo
+
+========================= EXPLICAÇÕES 2
+
+serverless é um tarceirizacao de gerenciamento de infra de uma determinada coisa
+serverless framework é uma abstracao do uso de serverless de alguma empresa, vc escreve 1 arquivo com 1 sintaxe e dependendo do provedor, o framework configura td a infra do provedor escolhido sem vc precisar sabe a sintaxe usada pelo provedor
+
+?react: é um spa usado pra lidar com muitas atualizacoes em 1 pagina
+
+redux: é uma lib q facilita o gerenciamento de estado no react. ao inves de um estado se passado p os componentes filhos e ter td essa passagem de estados de um componente p outro, o redux centraliza o estado em um local e p interagir com ele, basta fazer uma chamada. essa lib é recomendada p sistemas grandes com muitos componentes
+?redux saga: redux so q assincrono
+
+lambda function:
+api gateway:
+intercepta requisicao e chama uma lambda function referente ao endpoint da requisicao
+
+s3:
+
+dynamodb:
+n tem schema, atributos e tipos definidos
+entao um item pode ter atributos totalmente diferentes de outros itens
+em sistemas q precisa de atributos e tipos bem definidos, n é bom usar dynamobd q é um nosql
+
+step functions:
 
 
 
 
-api rest, react, redux, redux saga, serverless framework, aws (api gateway, lambda, step functions, dynamodb, rds, kinesis data stream, s3, cognito, cloudwatch, cloudformation)
+what is the serverless
+The Serverless Framework makes it easy to build applications using AWS Lambda. It is multi-provider framework, which means you can use it to build Serverless applications using other providers as well. For AWS, Serverless relies on CloudFormation to do the provisioning. It also scaffolds the project structure and takes care of deploying functions.
 
-
-
-
-
-
-
-
-
+O Serverless Framework facilita a construção de aplicativos usando AWS Lambda. É uma estrutura de vários provedores, o que significa que você pode usá-la para construir aplicativos sem servidor usando outros provedores também. Para AWS, Serverless depende do CloudFormation para fazer o provisionamento. Ele também sustenta a estrutura do projeto e cuida da implantação de funções.

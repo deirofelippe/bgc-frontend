@@ -1,0 +1,91 @@
+service: dynamodb
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: sa-east-1
+  environment:
+    HANDLER_PRODUTO: src/produto/${self:provider.environment.TABELA_PRODUTO}
+    INICIAL_MINUSCULA: produto
+    TABELA_PRODUTO: Produto
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:*"
+
+functions:
+  criarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}Criar.criar
+    events:
+      - http:
+          path: produto
+          method: post
+          cors: true
+  listarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}Listar.listar
+    events:
+      - http:
+          path: /
+          method: get
+          cors: true
+  buscarProduto:
+    handler: ${self:provider.environment.HANDLER_PRODUTO}Buscar.buscar
+    events:
+      - http:
+          path: produto/{id}
+          method: get
+          cors: true
+  # editarProduto:
+  #   handler: ${self:provider.environment.HANDLER_PRODUTO}Editar.editar
+  #   events:
+  #     - http:
+  #         path: produto
+  #         method: put
+  #         cors: true
+  # deletarProduto:
+  #   handler: ${self:provider.environment.HANDLER_PRODUTO}Deletar.deletar
+  #   events:
+  #     - http:
+  #         path: produto/{id}
+  #         method: delete
+  #         cors: true
+
+resources:
+  Resources:
+    Produto:
+      Type: 'AWS::DynamoDB::Table'
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:provider.environment.TABELA_PRODUTO}
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+          -
+            AttributeName: nome
+            AttributeType: S
+          -
+            AttributeName: preco
+            AttributeType: S
+          -
+            AttributeName: descricao
+            AttributeType: S
+          -
+            AttributeName: criadoEm
+            AttributeType: N
+          -
+            AttributeName: editadoEm
+            AttributeType: N
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 3
+          WriteCapacityUnits: 3
