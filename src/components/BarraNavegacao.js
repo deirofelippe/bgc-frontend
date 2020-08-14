@@ -16,10 +16,10 @@ const BarraNavegacao = () => {
    return (
       <Typography className={classes.root}>
          <Link to="/">
-            Listar Produtos
+            Listar produtos
          </Link>
          <Link to="/produto/form">
-            Cadastrar Produto
+            Cadastrar produto
          </Link>
       </Typography>
    );

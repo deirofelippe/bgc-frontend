@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import gerarID from '../../utils/GerarID';
+import { v1 } from 'uuid';
+import { connect } from 'react-redux';
+import { adicionarProduto } from '../../redux/actions/produtoActions';
 
 const FormProduto = props => {
-   const [produto, setProduto] = useState({
-      id: gerarID(),
-      nome: '',
-      descricao: '',
-      preco: '',
-   })
+   const estadoInicial = () => {
+      return {
+         id: v1(),
+         nome: 'a',
+         descricao: 'b',
+         preco: 'c',
+      }
+   }
+
+   const [produto, setProduto] = useState(estadoInicial())
 
    const handleChange = event => {
       const { name, value } = event.target
@@ -15,41 +21,43 @@ const FormProduto = props => {
    }
 
    const limparCampos = () => {
-      const produtoLimpo = {
-         id: gerarID(),
-         nome: '',
-         descricao: '',
-         preco: '',
-      }
-      setProduto({...produtoLimpo})
+      setProduto({ ...estadoInicial() })
    }
 
-      return (
-         <form onSubmit={(event) => {
-            props.handleSubmit(event, produto)
-            limparCampos()
-         }}>
-            <label>Nome: </label>
-            <input type="text" 
-               name="nome" 
-               value={produto.nome} 
-               onChange={handleChange} />
+   const handleSubmit = (event) => {
+      event.preventDefault()
+      console.log(produto)
+      props.adicionar(produto)
+      limparCampos()
+   }
+   
+   return (
+      <form onSubmit={(event) => handleSubmit(event)}>
+         <label>Nome: </label>
+         <input type="text"
+            name="nome"
+            value={produto.nome}
+            onChange={handleChange} />
 
-            <label>Descrição: </label>
-            <input type="text" 
-               name="descricao" 
-               value={produto.descricao} 
-               onChange={handleChange} />
-            
-            <label>Preço: </label>
-            <input type="text" 
-               name="preco" 
-               value={produto.preco} 
-               onChange={handleChange} />
+         <label>Descrição: </label>
+         <input type="text"
+            name="descricao"
+            value={produto.descricao}
+            onChange={handleChange} />
 
-            <input type="submit" value="Cadastrar" />
-         </form>
-      );
+         <label>Preço: </label>
+         <input type="text"
+            name="preco"
+            value={produto.preco}
+            onChange={handleChange} />
+
+         <input type="submit" value="Cadastrar" />
+      </form>
+   );
 }
 
-export default FormProduto;
+const mapDispatchToProps = (dispatch) => ({
+   adicionar: (produto) => dispatch(adicionarProduto(produto)),
+})
+
+export default connect(() => ({}), mapDispatchToProps)(FormProduto);

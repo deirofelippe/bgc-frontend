@@ -15,6 +15,7 @@ step functions - controle de fluxo
 
 ========================
 
+
 produto(id, nome, descricao, preco)
 usuario(id, nome, email, endereco, tipo[admin, cliente])
 reserva(idProduto, idUsuario, quantidade)
