@@ -4,8 +4,10 @@ design
 o q é cada coisa
 
 
-
-
+; no final
+padronizar nomes de arquivos, rotas 
+tirar logs
+tirar campos ja preenchidos
 
 
 

@@ -2,11 +2,22 @@ import { v1 } from 'uuid';
 
 export const dadosUsuarios = () => {
    return [
-      { "nome": "a", "email": "a@gmail.com", "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00", },
-      { "nome": "a", "email": "a@gmail.com", "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00", },
-      { "nome": "a", "email": "a@gmail.com", "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00", },
-      { "nome": "a", "email": "a@gmail.com", "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00", },
-      { "nome": "a", "email": "a@gmail.com", "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00", },
+      {"id":"", "nome": "a", "email": "a@gmail.com", "senha":"123", "tipo":"ADMIN",
+      "endereco": {
+         "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
+      },},
+      {"id":"", "nome": "a", "email": "c@gmail.com", "senha":"123", "tipo":"ADMIN",
+      "endereco": {
+         "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
+      },},
+      {"id":"", "nome": "a", "email": "d@gmail.com", "senha":"123", "tipo":"ADMIN",
+      "endereco": {
+         "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
+      },},
+      {"id":"", "nome": "a", "email": "e@gmail.com", "senha":"123", "tipo":"CLIENTE",
+      "endereco": {
+         "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
+      },},
    ]
 }
 

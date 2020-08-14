@@ -65,3 +65,21 @@ GET /reserva/carrinho
 GET /reserva/historico
 POST /reserva
 
+
+login -> cadastro de reserva e produto
+fazer login ou cadastrar -> consegue cadastrar outros admin, fazer reserva, deletar usuarios e produtos
+so da p cadastrar um usuario de fizer logout ou ser admin
+
+usuario = {
+   ...dados,
+   endereço: {
+      ...dados
+   }, 
+   login,
+   senha,
+   email,
+}
+
+login = {
+   id, email, senha
+}
