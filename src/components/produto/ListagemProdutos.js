@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletarProduto } from '../../redux/actions/produtoActions';
 
-const ListProdutos = (props) => {
+const ListagemProdutos = (props) => {
    const useStyles = makeStyles({
       table: {
          minWidth: 650,
@@ -15,14 +15,14 @@ const ListProdutos = (props) => {
    const classes = useStyles()
 
    const handleDelete = (id) => {
-      // if(window.confirm("Tem certeza que deseja deletar?")){
-      //    props.deletar(id)
-      // }
-      props.deletar(id)
+      if(window.confirm("Tem certeza que deseja deletar?")){
+         props.deletar(id)
+      }
+      // props.deletar(id)
    }
    
    const produtos = props.produtos
-   console.log(produtos)
+   console.log(props.estado)
 
    return (
       <TableContainer component={Paper}>
@@ -64,10 +64,11 @@ const ListProdutos = (props) => {
 
 const mapStateToProps = state => ({
    produtos: state.produtos,
+   estado: state,
 })
 
 const mapDispatchToProps = dispatch => ({
    deletar: (id) => dispatch(deletarProduto(id)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListProdutos);
+export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);

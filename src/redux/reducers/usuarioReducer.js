@@ -1,57 +1,38 @@
-import { dadosProdutos } from '../../utils/DadosBase'
+import { dadosUsuarios } from '../../utils/DadosBase'
 
-export default (state = dadosProdutos(), action) => {
+export default (state = dadosUsuarios(), action) => {
    switch (action.type) {
-      case 'LISTAR_PRODUTOS':
-         return listarProdutos(state)
+      case 'ADICIONAR_USUARIO':
+         return adicionarUsuario(state, action)
 
-      case 'ADICIONAR_PRODUTO':
-         return adicionarProduto(state, action)
+      case 'ATUALIZAR_USUARIO':
+         return atualizarUsuario(state, action)
 
-      case 'BUSCAR_PRODUTO':
-         return buscarProduto(state, action)
-
-      case 'ATUALIZAR_PRODUTO':
-         return atualizarProduto(state, action)
-
-      case 'DELETAR_PRODUTO':
-         return deletarProduto(state, action)
+      case 'DELETAR_USUARIO':
+         return deletarUsuario(state, action)
 
       default:
          return state
    }
 }
-
-const listarProdutos = (state) => {
-   return { ...state.produtos }
+const adicionarUsuario = (state, action) => {
+   const usuarios = [...state.usuarios, action.dados]
+   return { usuarios }
 }
 
-const adicionarProduto = (state, action) => {
-   const produtos = [...state.produtos, action.payload]
-   return { produtos }
-}
-
-const buscarProduto = (state, action) => {
-   const id = action.payload
-   const produto = state.produtos.find((produto) => produto.id === id)
-   return {
-      produto
-   }
-}
-
-const atualizarProduto = (state, action) => {
-   const produtoNovo = action.payload
-   const produtos = state.produtos.map(produtoAntigo => {
-      if (produtoAntigo.id === produtoNovo.id) {
-         return produtoNovo
+const atualizarUsuario = (state, action) => {
+   const usuarioNovo = action.dados
+   const usuarios = state.usuarios.map(usuarioAntigo => {
+      if (usuarioAntigo.id === usuarioNovo.id) {
+         return usuarioNovo
       }
-      return produtoAntigo
+      return usuarioAntigo
    })
-   return { produtos }
+   return { usuarios }
 }
 
-const deletarProduto = (state, action) => {
-   const id = action.payload
-   const produtos = state.produtos.filter((produto) => produto.id !== id)
-   return { produtos }
+const deletarUsuario = (state, action) => {
+   const id = action.dados
+   const usuarios = state.usuarios.filter((usuario) => usuario.id !== id)
+   return { usuarios }
 }

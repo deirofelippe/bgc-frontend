@@ -1,16 +1,38 @@
 
-/src
-	/components
-      /produto
-      /usuario
-      /reserva
+crud todo, s3, login, wish list, carrinho de compras, paginacao
+design
+o q é cada coisa
 
-	/css
-	/redux
-		/core
-			/actions
-			/reducers
-		/sagas
-	/services
 
+
+
+
+
+
+historico - pega o usuario logado, verifica tds os produtos q ele comprou
+
+login - um redux so p ele, guarda a id se tive logado
+clicar em fzr login, digitar a senha e o email, buscar o usuario pelo email q deve ser unico, se achou, guarda o email dele
+
+lista de desejos - pega o usuario logado e lista tds os produtos q ele marcou e mostra o contador, quando for listar mostra se quer tirar ou nao
+
+
+login = {
+   logado: true
+   id: "123",
+   nome: "aa",
+   email: "a@gmail.com"
+}
+
+listaDeDesejos = [
+   { id, nome, preco },
+   { id, nome, preco },
+   { id, nome, preco },
+]
+
+historicoDeReservas = [
+   { numero, idProduto },
+   { numero, idProduto },
+   { numero, idProduto },
+]
 

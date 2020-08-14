@@ -3,7 +3,7 @@ import { v1 } from 'uuid';
 import { connect } from 'react-redux';
 import { adicionarProduto } from '../../redux/actions/produtoActions';
 
-const FormProduto = props => {
+const FormularioProduto = props => {
    const estadoInicial = () => {
       return {
          id: v1(),
@@ -60,4 +60,4 @@ const mapDispatchToProps = (dispatch) => ({
    adicionar: (produto) => dispatch(adicionarProduto(produto)),
 })
 
-export default connect(() => ({}), mapDispatchToProps)(FormProduto);
+export default connect(() => ({}), mapDispatchToProps)(FormularioProduto);

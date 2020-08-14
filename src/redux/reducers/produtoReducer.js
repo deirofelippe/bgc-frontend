@@ -17,23 +17,22 @@ export default (state = dadosProdutos(), action) => {
 }
 
 const adicionarProduto = (state, action) => {
-   // console.log(state)
-   return [...state, action.payload ]
+   return [...state, action.dados ]
 }
 
 const atualizarProduto = (state, action) => {
-   const produtoNovo = action.payload
-   const produtos = state.produtos.map(produtoAntigo => {
+   const produtoNovo = action.dados
+   const produtos = state.map(produtoAntigo => {
       if (produtoAntigo.id === produtoNovo.id) {
          return produtoNovo
       }
       return produtoAntigo
    })
-   return { produtos }
+   return [...produtos]
 }
 
 const deletarProduto = (state, action) => {
-   const id = action.payload
+   const id = action.dados
    const produtos = state.filter((produto) => produto.id !== id)
    return [ ...produtos ]
 }

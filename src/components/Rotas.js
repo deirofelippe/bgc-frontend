@@ -1,24 +1,24 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import ListProdutos from './produto/ListProdutos';
-import FormProduto from './produto/FormProduto';
-import EditProduto from './produto/EditProduto';
+import ListagemProdutos from './produto/ListagemProdutos';
+import FormularioProduto from './produto/FormularioProduto';
+import AtualizacaoProduto from './produto/AtualizacaoProduto';
 import Produto from './produto/Produto';
 import Reserva from './reserva/Reserva';
 
 const Rotas = props => (
    <Switch>
       <Route exact path="/">
-         <ListProdutos />
+         <ListagemProdutos />
       </Route>
       <Route path="/produto/form">
-         <FormProduto />
+         <FormularioProduto />
       </Route>
       <Route path="/produto/:id">
          <Produto />
       </Route>
       <Route path="/edit/produto/:id">
-         <EditProduto />
+         <AtualizacaoProduto />
       </Route>
       <Route path="/reserva/:id">
          <Reserva />

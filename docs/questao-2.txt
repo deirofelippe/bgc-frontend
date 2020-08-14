@@ -58,6 +58,10 @@ POST /usuario/
 DELETE /usuario/:id
 PUT /usuario/:id
 
+GET /usuario/lista-de-desejos
+
 GET /reserva
-GET /reserva/finalizar
-POST /reserva/finalizar
+GET /reserva/carrinho
+GET /reserva/historico
+POST /reserva
+

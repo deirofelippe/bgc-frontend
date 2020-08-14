@@ -1,33 +1,20 @@
-export const listarProdutos = () => {
-   return {
-      type: 'LISTAR_PRODUTOS'
-   }
-}
-
-export const adicionarProduto = (data) => {
+export const adicionarProduto = (dados) => {
    return {
       type: 'ADICIONAR_PRODUTO',
-      payload: data
+      dados
    }
 }
 
-export const buscarProduto = (data) => {
-   return {
-      type: 'BUSCAR_PRODUTO',
-      payload: data
-   }
-}
-
-export const atualizarProduto = (data) => {
+export const atualizarProduto = (dados) => {
    return {
       type: 'ATUALIZAR_PRODUTO',
-      payload: data
+      dados
    }
 }
 
-export const deletarProduto = (data) => {
+export const deletarProduto = (dados) => {
    return {
       type: 'DELETAR_PRODUTO',
-      payload: data
+      dados
    }
 }

@@ -26,10 +26,19 @@ export const dadosReservas = () => {
 }
 
 export const dadosProdutos = () => {
-   return [
-      { "id": v1(), "nome": "PC Gamer", "descricao": "a", "preco": "5000", },
-      { "id": v1(), "nome": "PC Gamer", "descricao": "a", "preco": "5000", },
-      { "id": v1(), "nome": "PC Gamer", "descricao": "a", "preco": "5000", },
-      { "id": v1(), "nome": "PC Gamer", "descricao": "a", "preco": "5000", },
-   ]
+   let id, produto
+   let produtos = []
+   for(let indice = 0; indice < 5; indice++){
+      id = v1()
+      produto = {
+         "id": v1(), 
+         "imagem":`produto/${id}`, 
+         "nome": "PC Gamer", 
+         "descricao": "a", 
+         "preco": "5000"
+      }
+      produtos.push(produto)
+   }
+
+   return produtos
 }

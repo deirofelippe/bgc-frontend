@@ -6,6 +6,6 @@ import usuarios from './usuarioReducer'
 
 export default combineReducers({
    produtos,
-   // reservas,
-   // usuarios,
+   reservas,
+   usuarios,
 })
