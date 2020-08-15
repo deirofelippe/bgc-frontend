@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { v1 } from 'uuid';
 import { connect } from 'react-redux';
-import { adicionarUsuario } from '../../redux/actions/usuarioActions';
+import { useParams } from 'react-router-dom';
+import { atualizarUsuario } from '../../redux/actions/usuarioActions';
 import { fazerLoginDireto } from '../../redux/actions/loginActions';
-import { buscarCEP, verificarEmailExiste } from '../../services/usuarioService';
+import { buscarCEP, emailNaoPodeSerAtualizado, buscarUsuario } from '../../services/usuarioService';
 
 const AtualizacaoUsuario = props => {
-   const estadoInicialUsuario = () => {
-      return {
-         id: v1(), nome: 'a', email: '@gmail.com', senha: "", tipo: "CLIENTE",
-      }
+   const { id } = useParams()
+   
+   const iniciarEstadoUsuario = () =>{
+      usuarioCompleto = buscarUsuario(props.usuarios, id)
+      const { nome, email, senha, tipo } = usuarioCompleto
+      return { id, nome, email, senha, tipo }
    }
 
-   const estadoInicialEndereco = () => {
-      return {
-         cep: '21550400', estado: '', cidade: '',
-         bairro: '', endereco: '', numero: '75',
-      }
+   const iniciarEstadoEndereco = () =>{
+      return { ...usuarioCompleto.endereco }
    }
-
-   const [usuario, setUsuario] = useState(estadoInicialUsuario())
-   const [endereco, setEndereco] = useState(estadoInicialEndereco())
+   
+   let usuarioCompleto
+   const [usuario, setUsuario] = useState(iniciarEstadoUsuario())
+   const [endereco, setEndereco] = useState(iniciarEstadoEndereco())
    const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
 
    const handleChangeEndereco = event => {
@@ -34,11 +34,6 @@ const AtualizacaoUsuario = props => {
       console.log(usuario)
    }
 
-   const limparCampos = () => {
-      setUsuario({ ...usuario, ...estadoInicialUsuario() })
-      setEndereco({ ...endereco, ...estadoInicialEndereco() })
-   }
-
    const handleCEP = async event => {
       event.preventDefault()
       const cep = endereco.cep
@@ -48,36 +43,36 @@ const AtualizacaoUsuario = props => {
          estado: dados.uf, cidade: dados.localidade,
          bairro: dados.bairro, endereco: dados.logradouro
       })
-      console.log(endereco)
       setCepFoiBuscado(true)
    }
 
    const handleSubmit = (event) => {
       event.preventDefault()
 
-      const emailJaExiste = verificarEmailExiste(props.usuarios, usuario.email)
-      if (emailJaExiste) {
+      const naoPodeSerAtualizado = emailNaoPodeSerAtualizado(props.usuarios, usuario)
+      if (naoPodeSerAtualizado) {
          return
       }
       const usuarioCompleto = {
          ...usuario,
          endereco: { ...endereco }
       }
-
+      
       const loginUsuarioCadastrado = {
          logado: true,
+         id: usuario.id,
          email: usuario.email,
          nome: usuario.nome,
          tipoDeUsuario: usuario.tipo
       }
-
-      props.adicionarUsuario(usuarioCompleto)
-
+      
+      props.atualizar(usuarioCompleto)
+      
+      if(login.email !== usuario.email){
+         return
+      }
+      
       props.fazerLoginDireto(loginUsuarioCadastrado)
-
-      console.log(usuarioCompleto)
-      //fazer login direto, sem buscar nos usuario
-      // props.adicionar(usuario)
       // limparCampos()
    }
 
@@ -85,27 +80,32 @@ const AtualizacaoUsuario = props => {
 
    return (
       <form onSubmit={(event) => handleSubmit(event)}>
-         <label>Nome: </label>
-         <input type="text" name="nome" value={usuario.nome} onChange={handleChangeUsuario} />
+         <label>Nome: 
+            <input type="text" name="nome" value={usuario.nome} onChange={handleChangeUsuario} />
+         </label>
 
-         <label>E-mail: </label>
-         <input type="email" name="email" value={usuario.email} onChange={handleChangeUsuario} />
+         <label>E-mail: 
+            <input type="email" name="email" value={usuario.email} onChange={handleChangeUsuario} />
+         </label>
 
-         <label>Senha: </label>
-         <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
+         <label>Senha: 
+            <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
+         </label>
 
          {login.tipoDeUsuario === 'ADMIN' &&
             <>
-               <label htmlFor="">Tipo de usuário: </label>
-               <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>
-                  <option value="CLIENTE" selected>Cliente</option>
-                  <option value="ADMIN">Administrador</option>
-               </select>
+               <label>Tipo de usuário: 
+                  <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>
+                     <option value="CLIENTE">Cliente</option>
+                     <option value="ADMIN">Administrador</option>
+                  </select>
+               </label>
             </>
          }
 
-         <label>CEP: </label>
-         <input type="text" name="cep" value={endereco.cep} onChange={handleChangeEndereco} />
+         <label>CEP: 
+            <input type="text" name="cep" value={endereco.cep} onChange={handleChangeEndereco} />
+         </label>
          <button onClick={handleCEP}>Buscar CEP</button>
 
          {cepFoiBuscado === true &&
@@ -117,10 +117,11 @@ const AtualizacaoUsuario = props => {
             </>
          }
 
-         <label>Número: </label>
-         <input type="text" name="numero" value={endereco.numero} onChange={handleChangeEndereco} />
+         <label>Número: 
+            <input type="text" name="numero" value={endereco.numero} onChange={handleChangeEndereco} />
+         </label>
 
-         <input type="submit" value="Cadastrar" />
+         <input type="submit" value="Atualizar" />
       </form>
    );
 }
@@ -131,7 +132,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   adicionarUsuario: (usuario) => dispatch(adicionarUsuario(usuario)),
+   atualizar: (usuario) => dispatch(atualizarUsuario(usuario)),
    fazerLoginDireto: (login) => dispatch(fazerLoginDireto(login))
 })
 

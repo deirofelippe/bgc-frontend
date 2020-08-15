@@ -5,7 +5,7 @@ import { fazerLogin } from '../redux/actions/loginActions';
 
 const Login = props => {
    const [login, setLogin] = useState({
-      email: 'a@gmail.com',
+      email: 'feh@gmail.com',
       senha: '123'
    })
 

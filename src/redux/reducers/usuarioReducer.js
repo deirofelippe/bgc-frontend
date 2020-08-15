@@ -22,17 +22,18 @@ const adicionarUsuario = (state, action) => {
 
 const atualizarUsuario = (state, action) => {
    const usuarioNovo = action.dados
-   const usuarios = state.usuarios.map(usuarioAntigo => {
+   const usuarios = state.map(usuarioAntigo => {
       if (usuarioAntigo.id === usuarioNovo.id) {
          return usuarioNovo
       }
       return usuarioAntigo
    })
-   return { usuarios }
+   console.log(usuarios)
+   return [...usuarios ]
 }
 
 const deletarUsuario = (state, action) => {
    const id = action.dados
-   const usuarios = state.usuarios.filter((usuario) => usuario.id !== id)
-   return { usuarios }
+   const usuarios = state.filter((usuario) => usuario.id !== id)
+   return [ ...usuarios ]
 }

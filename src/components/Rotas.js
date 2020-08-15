@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ListagemProdutos from './produto/ListagemProdutos';
 import ListagemUsuarios from './usuario/ListagemUsuarios';
 import FormularioProduto from './produto/FormularioProduto';
@@ -12,40 +12,40 @@ import Login from './Login';
 import Reserva from './reserva/Reserva';
 
 const Rotas = props => (
-   <Switch>
+   <>
       <Route exact path="/">
          <ListagemProdutos />
       </Route>
-      <Route path="/produto/formulario">
-         <FormularioProduto />
-      </Route>
-      <Route path="/produto/:id">
+      <Route exact path="/produto/:id">
          <Produto />
       </Route>
-      <Route path="/edit/produto/:id">
+      <Route exact path="/produto/formulario">
+         <FormularioProduto />
+      </Route>
+      <Route exact path="/produto/atualizacao/:id">
          <AtualizacaoProduto />
       </Route>
 
-      <Route path="/usuarios">
+      <Route exact path="/usuarios">
          <ListagemUsuarios />
       </Route>
-      <Route path="/usuario/formulario">
-         <FormularioUsuario />
-      </Route>
-      <Route path="/usuario/:id">
+      <Route exact path="/usuario/:id">
          <Usuario />
       </Route>
-      <Route path="/produto/atualizacao/:id">
+      <Route exact path="/usuario/formulario">
+         <FormularioUsuario />
+      </Route>
+      <Route exact path="/usuario/atualizacao/:id">
          <AtualizacaoUsuario />
       </Route>
 
-      <Route path="/reserva/:id">
+      <Route exact path="/reserva/:id">
          <Reserva />
       </Route>
-      <Route path="/login">
+      <Route exact path="/login">
          <Login />
       </Route>
-   </Switch>
+   </>
 )
 
 export default Rotas;

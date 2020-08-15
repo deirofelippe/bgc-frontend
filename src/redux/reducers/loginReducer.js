@@ -1,16 +1,13 @@
 import { iniciarEstadoLogin } from '../../utils/inicializandoEstado'
-const iniciar = () => {
-   const inicio = {
-      logado: true,
-      id: 'ae1cd970-de8e-11ea-8801-d906a2b35bfc',
-      email: 'feh@gmail.com',
-      nome: 'Feh',
-      tipoDeUsuario: 'ADMIN'
-   }
-   return inicio
+const login = {
+   logado: true,
+   id: '123',
+   email: 'feh@gmail.com',
+   nome: 'Feh',
+   tipoDeUsuario: 'ADMIN'
 }
 
-export default (state = iniciar(), action) => {
+export default (state = login, action) => {
    switch (action.type) {
       case 'FAZER_LOGIN':
          return fazerLogin(state, action)
@@ -29,17 +26,13 @@ export default (state = iniciar(), action) => {
 const fazerLogin = (state, action) => {
    const login = action.dados.login
    const usuarios = action.dados.usuarios
-   console.log(usuarios)
+   
    const usuario = usuarios.find(usuario => {
       if ((login.email === usuario.email) && (login.senha === usuario.senha)) {
          return usuario
       }
       return undefined
    })
-
-   if (usuario === undefined) {
-      return { ...state }
-   }
 
    const usuarioLogado = {
       logado: true,

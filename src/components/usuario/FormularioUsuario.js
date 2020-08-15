@@ -3,7 +3,7 @@ import { v1 } from 'uuid';
 import { connect } from 'react-redux';
 import { adicionarUsuario } from '../../redux/actions/usuarioActions';
 import { fazerLoginDireto } from '../../redux/actions/loginActions';
-import { buscarCEP, verificarEmailExiste } from '../../services/usuarioService';
+import { buscarCEP, emailJaExiste } from '../../services/usuarioService';
 
 const FormularioUsuario = props => {
    const estadoInicialUsuario = () => {
@@ -55,8 +55,8 @@ const FormularioUsuario = props => {
    const handleSubmit = (event) => {
       event.preventDefault()
 
-      const emailJaExiste = verificarEmailExiste(props.usuarios, usuario.email)
-      if (emailJaExiste) {
+      const emailExiste = emailJaExiste(props.usuarios, usuario.email)
+      if (emailExiste) {
          return
       }
       const usuarioCompleto = {

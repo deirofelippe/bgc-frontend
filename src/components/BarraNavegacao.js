@@ -30,10 +30,12 @@ const BarraNavegacao = (props) => {
 
          {login.tipoDeUsuario === 'ADMIN' &&
             <>
-               <Link to="/produto/form">
+               <Link to="/usuarios">
+                  Listar usuários
+               </Link>
+               <Link to="/produto/formulario">
                   Cadastrar produto
                </Link>
-
                <Link to="/usuario/formulario">
                   Cadastrar usuário
                </Link>

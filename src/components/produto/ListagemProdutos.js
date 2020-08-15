@@ -56,7 +56,7 @@ const ListagemProdutos = (props) => {
                      {login.tipoDeUsuario === 'ADMIN' &&
                         <>
                            <TableCell>
-                              <Link to={`/edit/produto/${produto.id}`}>Editar</Link>
+                              <Link to={`/produto/atualizacao/${produto.id}`}>Editar</Link>
                            </TableCell>
                            <TableCell>
                               <button onClick={() => handleDelete(produto.id)}>Deletar</button>

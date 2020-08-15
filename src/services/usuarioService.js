@@ -7,9 +7,18 @@ export const buscarCEP = async cep => {
 }
 
 export const buscarUsuario = (usuarios, id) => {
-   return usuarios.find(produto => produto.id === id)
+   return usuarios.find(usuario => usuario.id === id)
 }
 
-export const verificarEmailExiste = (usuarios, email) => {
-   return usuarios.some(usuario => usuario.email === email)
+export const emailJaExiste = (usuarios, email) => {
+   usuarios.some(usuario => usuario.email === email)
+}
+
+export const emailNaoPodeSerAtualizado = (usuarios, usuario) => {
+   return usuarios.some(usuarioBuscado => {
+      if(usuarioBuscado.email === usuario.email && usuarioBuscado.id !== usuario.id){
+            return true
+      }
+      return false
+   });
 }

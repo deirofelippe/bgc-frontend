@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletarProduto } from '../../redux/actions/produtoActions';
+import { deletarUsuario } from '../../redux/actions/usuarioActions';
 
 const ListagemUsuarios = (props) => {
    const useStyles = makeStyles({
@@ -18,51 +18,36 @@ const ListagemUsuarios = (props) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
          props.deletar(id)
       }
-      // props.deletar(id)
    }
    
-   const produtos = props.produtos
-   const login = props.login
-   console.log(props.estado)
-
+   const usuarios = props.usuarios
+   //nome, email e tipo
    return (
       <TableContainer component={Paper}>
          <Table className={classes.table} aria-label="simple table">
             <TableHead>
                <TableRow>
                   <TableCell>Nome</TableCell>
-                  <TableCell>Descrição</TableCell>
-                  <TableCell>Preço</TableCell>
+                  <TableCell>E-mail</TableCell>
+                  <TableCell>Tipo</TableCell>
                   <TableCell>#</TableCell>
-                  {login.tipoDeUsuario === 'ADMIN' &&
-                     <>
-                        <TableCell>#</TableCell>
-                        <TableCell>#</TableCell>
-                     </>
-                  }
+                  <TableCell>#</TableCell>
                </TableRow>
             </TableHead>
             <TableBody>
-               {produtos.map((produto) => (
-                  <TableRow key={produto.id}>
+               {usuarios.map((usuario) => (
+                  <TableRow key={usuario.id}>
                      <TableCell>
-                        <Link to={`/produto/${produto.id}`}>{produto.nome}</Link>
+                        <Link to={`/usuario/${usuario.id}`}>{usuario.nome}</Link>
                      </TableCell>
-                     <TableCell>{produto.descricao}</TableCell>
-                     <TableCell>{produto.preco}</TableCell>
+                     <TableCell>{usuario.email}</TableCell>
+                     <TableCell>{usuario.tipo}</TableCell>
                      <TableCell>
-                        <Link to={`/reserva/${produto.id}`}>Comprar</Link>
+                        <Link to={`/usuario/atualizacao/${usuario.id}`}>Editar</Link>
                      </TableCell>
-                     {login.tipoDeUsuario === 'ADMIN' &&
-                        <>
-                           <TableCell>
-                              <Link to={`/edit/produto/${produto.id}`}>Editar</Link>
-                           </TableCell>
-                           <TableCell>
-                              <button onClick={() => handleDelete(produto.id)}>Deletar</button>
-                           </TableCell>
-                        </>
-                     }
+                     <TableCell>
+                        <button onClick={() => handleDelete(usuario.id)}>Deletar</button>
+                     </TableCell>
                   </TableRow>
                ))}
             </TableBody>
@@ -72,13 +57,11 @@ const ListagemUsuarios = (props) => {
 }
 
 const mapStateToProps = state => ({
-   produtos: state.produtos,
-   estado: state,
-   login: state.login
+   usuarios: state.usuarios,
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar: (id) => dispatch(deletarProduto(id)),
+   deletar: (id) => dispatch(deletarUsuario(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemUsuarios);
