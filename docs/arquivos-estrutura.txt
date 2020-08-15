@@ -5,7 +5,7 @@ o q é cada coisa
 
 
 ; no final
-padronizar nomes de arquivos, rotas 
+padronizar nomes de arquivos, rotas (nome vem antes ou depois: listagemProduto, serviceProduto)
 tirar logs
 tirar campos ja preenchidos
 

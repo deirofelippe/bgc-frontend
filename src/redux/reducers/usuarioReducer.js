@@ -15,9 +15,9 @@ export default (state = dadosUsuarios(), action) => {
          return state
    }
 }
+
 const adicionarUsuario = (state, action) => {
-   const usuarios = [...state.usuarios, action.dados]
-   return { usuarios }
+   return [ ...state, action.dados ]
 }
 
 const atualizarUsuario = (state, action) => {

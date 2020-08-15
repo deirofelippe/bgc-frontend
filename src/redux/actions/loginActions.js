@@ -10,3 +10,10 @@ export const fazerLogout = () => {
       type: 'FAZER_LOGOUT'
    }
 }
+
+export const fazerLoginDireto = (dados) => {
+   return {
+      type: 'FAZER_LOGIN_DIRETO',
+      dados
+   }
+}

@@ -3,6 +3,7 @@ import { v1 } from 'uuid';
 export const iniciarEstadoLogin = () => {
    return {
       logado: false,
+      id: '',
       email: '',
       nome: '',
       tipoDeUsuario: ''

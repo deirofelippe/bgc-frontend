@@ -17,7 +17,6 @@ const BarraNavegacao = (props) => {
 
    const handleLogout = event => {
       event.preventDefault()
-      console.log('Fazer logout')
       props.fazerLogout()
    }
 
@@ -28,12 +27,26 @@ const BarraNavegacao = (props) => {
          <Link to="/">
             Listar produtos
          </Link>
-         <Link to="/produto/form">
-            Cadastrar produto
-         </Link>
+
+         {login.tipoDeUsuario === 'ADMIN' &&
+            <>
+               <Link to="/produto/form">
+                  Cadastrar produto
+               </Link>
+
+               <Link to="/usuario/formulario">
+                  Cadastrar usuário
+               </Link>
+            </>
+         }
+         
          {login.logado === false 
             ? <Link to="/login">Login</Link>
-            : <button onClick={handleLogout}>Logout</button>
+            : 
+               <>
+                  <Link to={`/usuario/${login.id}`}>Olá, {login.nome}</Link>
+                  <button onClick={handleLogout}>Logout</button>
+               </>
          }
       </Typography>
    );

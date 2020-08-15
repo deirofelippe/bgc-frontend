@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletarProduto } from '../../redux/actions/produtoActions';
 
-const ListagemProdutos = (props) => {
+const ListagemUsuarios = (props) => {
    const useStyles = makeStyles({
       table: {
          minWidth: 650,
@@ -81,4 +81,4 @@ const mapDispatchToProps = dispatch => ({
    deletar: (id) => dispatch(deletarProduto(id)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);
+export default connect(mapStateToProps, mapDispatchToProps)(ListagemUsuarios);

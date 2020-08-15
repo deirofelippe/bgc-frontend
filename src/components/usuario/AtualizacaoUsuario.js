@@ -5,7 +5,7 @@ import { adicionarUsuario } from '../../redux/actions/usuarioActions';
 import { fazerLoginDireto } from '../../redux/actions/loginActions';
 import { buscarCEP, verificarEmailExiste } from '../../services/usuarioService';
 
-const FormularioUsuario = props => {
+const AtualizacaoUsuario = props => {
    const estadoInicialUsuario = () => {
       return {
          id: v1(), nome: 'a', email: '@gmail.com', senha: "", tipo: "CLIENTE",
@@ -66,7 +66,6 @@ const FormularioUsuario = props => {
 
       const loginUsuarioCadastrado = {
          logado: true,
-         id: usuario.id,
          email: usuario.email,
          nome: usuario.nome,
          tipoDeUsuario: usuario.tipo
@@ -75,6 +74,10 @@ const FormularioUsuario = props => {
       props.adicionarUsuario(usuarioCompleto)
 
       props.fazerLoginDireto(loginUsuarioCadastrado)
+
+      console.log(usuarioCompleto)
+      //fazer login direto, sem buscar nos usuario
+      // props.adicionar(usuario)
       // limparCampos()
    }
 
@@ -82,32 +85,27 @@ const FormularioUsuario = props => {
 
    return (
       <form onSubmit={(event) => handleSubmit(event)}>
-         <label>Nome: 
-            <input type="text" name="nome" value={usuario.nome} onChange={handleChangeUsuario} />
-         </label>
+         <label>Nome: </label>
+         <input type="text" name="nome" value={usuario.nome} onChange={handleChangeUsuario} />
 
-         <label>E-mail: 
-            <input type="email" name="email" value={usuario.email} onChange={handleChangeUsuario} />
-         </label>
+         <label>E-mail: </label>
+         <input type="email" name="email" value={usuario.email} onChange={handleChangeUsuario} />
 
-         <label>Senha: 
-            <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
-         </label>
+         <label>Senha: </label>
+         <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
 
          {login.tipoDeUsuario === 'ADMIN' &&
             <>
-               <label>Tipo de usuário: 
-                  <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>
-                     <option value="CLIENTE">Cliente</option>
-                     <option value="ADMIN">Administrador</option>
-                  </select>
-               </label>
+               <label htmlFor="">Tipo de usuário: </label>
+               <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>
+                  <option value="CLIENTE" selected>Cliente</option>
+                  <option value="ADMIN">Administrador</option>
+               </select>
             </>
          }
 
-         <label>CEP: 
-            <input type="text" name="cep" value={endereco.cep} onChange={handleChangeEndereco} />
-         </label>
+         <label>CEP: </label>
+         <input type="text" name="cep" value={endereco.cep} onChange={handleChangeEndereco} />
          <button onClick={handleCEP}>Buscar CEP</button>
 
          {cepFoiBuscado === true &&
@@ -119,9 +117,8 @@ const FormularioUsuario = props => {
             </>
          }
 
-         <label>Número: 
-            <input type="text" name="numero" value={endereco.numero} onChange={handleChangeEndereco} />
-         </label>
+         <label>Número: </label>
+         <input type="text" name="numero" value={endereco.numero} onChange={handleChangeEndereco} />
 
          <input type="submit" value="Cadastrar" />
       </form>
@@ -138,4 +135,4 @@ const mapDispatchToProps = dispatch => ({
    fazerLoginDireto: (login) => dispatch(fazerLoginDireto(login))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormularioUsuario);
+export default connect(mapStateToProps, mapDispatchToProps)(AtualizacaoUsuario);
