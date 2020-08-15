@@ -15,6 +15,7 @@ step functions - controle de fluxo
 
 ========================
 
+
 produto(id, nome, descricao, preco)
 usuario(id, nome, email, endereco, tipo[admin, cliente])
 reserva(idProduto, idUsuario, quantidade)
@@ -57,6 +58,28 @@ POST /usuario/
 DELETE /usuario/:id
 PUT /usuario/:id
 
+GET /usuario/lista-de-desejos
+
 GET /reserva
-GET /reserva/finalizar
-POST /reserva/finalizar
+GET /reserva/carrinho
+GET /reserva/historico
+POST /reserva
+
+
+login -> cadastro de reserva e produto
+fazer login ou cadastrar -> consegue cadastrar outros admin, fazer reserva, deletar usuarios e produtos
+so da p cadastrar um usuario de fizer logout ou ser admin
+
+usuario = {
+   ...dados,
+   endereço: {
+      ...dados
+   }, 
+   login,
+   senha,
+   email,
+}
+
+login = {
+   id, email, senha
+}

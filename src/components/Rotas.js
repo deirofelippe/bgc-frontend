@@ -1,31 +1,51 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import ListProdutos from './produto/ListProdutos';
-import FormProduto from './produto/FormProduto';
-import EditProduto from './produto/EditProduto';
+import { Route } from 'react-router-dom';
+import ListagemProdutos from './produto/ListagemProdutos';
+import ListagemUsuarios from './usuario/ListagemUsuarios';
+import FormularioProduto from './produto/FormularioProduto';
+import FormularioUsuario from './usuario/FormularioUsuario';
+import AtualizacaoProduto from './produto/AtualizacaoProduto';
+import AtualizacaoUsuario from './usuario/AtualizacaoUsuario';
 import Produto from './produto/Produto';
+import Usuario from './usuario/Usuario';
+import Login from './Login';
 import Reserva from './reserva/Reserva';
 
-const Rotas = props => {
-   return (
-      <Switch>
-         <Route exact path="/">
-            <ListProdutos lista={props.lista} handleDelete={props.handleDelete} />
-         </Route>
-         <Route path="/produto/form">
-            <FormProduto handleSubmit={props.handleSubmit} />
-         </Route>
-         <Route path="/produto/:id">
-            <Produto lista={props.lista} />
-         </Route>
-         <Route path="/edit/produto/:id">
-            <EditProduto lista={props.lista} handleEdit={props.handleEdit} />
-         </Route>
-         <Route path="/reserva/:id">
-            <Reserva lista={props.lista} />
-         </Route>
-      </Switch>
-   );
-}
+const Rotas = props => (
+   <>
+      <Route exact path="/">
+         <ListagemProdutos />
+      </Route>
+      <Route exact path="/produto/:id">
+         <Produto />
+      </Route>
+      <Route exact path="/produto/formulario">
+         <FormularioProduto />
+      </Route>
+      <Route exact path="/produto/atualizacao/:id">
+         <AtualizacaoProduto />
+      </Route>
+
+      <Route exact path="/usuarios">
+         <ListagemUsuarios />
+      </Route>
+      <Route exact path="/usuario/:id">
+         <Usuario />
+      </Route>
+      <Route exact path="/usuario/formulario">
+         <FormularioUsuario />
+      </Route>
+      <Route exact path="/usuario/atualizacao/:id">
+         <AtualizacaoUsuario />
+      </Route>
+
+      <Route exact path="/reserva/:id">
+         <Reserva />
+      </Route>
+      <Route exact path="/login">
+         <Login />
+      </Route>
+   </>
+)
 
 export default Rotas;

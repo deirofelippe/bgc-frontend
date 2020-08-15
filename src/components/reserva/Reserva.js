@@ -1,74 +1,54 @@
 import React, { useState } from 'react';
-import gerarID from '../../utils/GerarID';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { buscarProduto } from '../../services/produtoService';
+import { adicionarReserva } from '../../redux/actions/reservaActions';
 
 const Reserva = props => {
    const { id } = useParams()
-   const usuarioInicial = {
-      id: gerarID(),
-      nome: '',
-      email: '',
-      cep: '',
-      endereco: '',
+   const estadoInicialReserva = () => {
+      return {
+         idProduto: id, idUsuario: props.login.id,
+         quantidade: 0, dataReserva: '',
+         numero: new Date().getTime(),
+      }
    }
 
-   const pegarProdutoNaLista = () => {
-      const produtos = props.lista.produtos
-      return produtos.find(obj => obj.id === id)
-   }
-   
-   const [usuario, setUsuario] = useState(usuarioInicial)
-   const produto = pegarProdutoNaLista()
+   const [reserva, setReserva] = useState(estadoInicialReserva())
 
-   const handleChange = event => {
-      const valor = event.target.value
-      const chave = event.target.name
-      setUsuario({ ...usuario, [chave]: valor })
-      console.log(usuario)
-   }
-
-   const handleCEP = event => {
+   const handleSubmit = async event => {
       event.preventDefault()
-      const cep = usuario.cep
-      const url = `https://viacep.com.br/ws/${cep}/json/`
-      console.log(url);
-
-      axios.get(url)
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-   }
-
-   const handleSubmit = event => {
-      event.preventDefault()
+      await setReserva({...reserva, dataReserva: new Date().getTime()})
+      await props.adicionarReserva(reserva)
       console.log('Reserva feita!')
-      console.log(usuario)
+      console.log(reserva)
    }
-   
+
+   const login = props.login
+   const produto = buscarProduto(props.produtos, id)
+
    return (
       <div>
-         {produto.nome}
-         {produto.preco}
+         <h2>{produto.nome}</h2>
+         <h2>{produto.preco}</h2>
          <form>
-            Nome: <input type="text" name="nome" onChange={handleChange}/>
-            E-mail: <input type="email" name="email" onChange={handleChange}/>
-            CEP: <input type="text" name="cep" onChange={handleChange}/>
-            <button onClick={handleCEP}>Buscar CEP</button>
-            Endereço: <input type="text" name="endereco" onChange={handleChange}/>
-            <button onClick={handleSubmit}>Fazer reserva</button>
+            {login.logado === true
+            ? <button onClick={handleSubmit}>Fazer reserva</button>
+            : <Link to="/login">Faça login para reservar o produto</Link>
+            }
+            
          </form>
       </div>
    );
 }
 
-export default Reserva;
+const mapStateToProps = state => ({
+   produtos: state.produtos,
+   login: state.login
+})
+
+const mapDispatchToProps = dispatch => ({
+   adicionarReserva: (reserva) => dispatch(adicionarReserva(reserva))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Reserva);
