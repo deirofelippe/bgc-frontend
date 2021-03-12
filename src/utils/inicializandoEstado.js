@@ -37,12 +37,12 @@ export const iniciarEstadoUsuario = () => {
    }
 }
 
-export const iniciarEstadoReserva = () => {
+export const iniciarEstadoReserva = (idProduto = '', idUsuario = '') => {
    return {
-      idProduto: '', 
-      idUsuario: '', 
-      quantidade: '', 
+      idProduto: idProduto, 
+      idUsuario: idUsuario, 
+      quantidade: '1', 
       dataReserva: '', 
-      numeroReserva: ''
+      numero: ''
    }
 }

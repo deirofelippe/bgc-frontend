@@ -12,7 +12,7 @@ const Produto = props => {
          <h2>{produto.nome}</h2>
          <h1>{produto.descricao}</h1>
          <h1>{produto.preco}</h1>
-         <Link to="/reserva">Comprar</Link>
+         <Link to={`/reserva/${produto.id}`}>Comprar</Link>
       </div>
    );
 }
