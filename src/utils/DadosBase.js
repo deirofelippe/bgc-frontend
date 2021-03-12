@@ -23,16 +23,16 @@ export const dadosUsuarios = () => {
 
 export const dadosReservas = () => {
    return [
-      { "idProduto": "1", "idUsuario": "1", "quantidade": "2", "dataReserva": "aa", "numeroReserva": "000" },
-      { "idProduto": "3", "idUsuario": "3", "quantidade": "5", "dataReserva": "bb", "numeroReserva": "101" },
-      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numeroReserva": "234" },
-      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numeroReserva": "123" },
-      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numeroReserva": "456" },
-      { "idProduto": "1", "idUsuario": "1", "quantidade": "2", "dataReserva": "aa", "numeroReserva": "000" },
-      { "idProduto": "3", "idUsuario": "3", "quantidade": "5", "dataReserva": "bb", "numeroReserva": "101" },
-      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numeroReserva": "234" },
-      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numeroReserva": "123" },
-      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numeroReserva": "456" },
+      { "idProduto": "1", "idUsuario": "123", "quantidade": "2", "dataReserva": "aa", "numero": "000" },
+      { "idProduto": "1", "idUsuario": "123", "quantidade": "5", "dataReserva": "bb", "numero": "101" },
+      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numero": "234" },
+      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numero": "123" },
+      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numero": "456" },
+      { "idProduto": "1", "idUsuario": "123", "quantidade": "2", "dataReserva": "aa", "numero": "000" },
+      { "idProduto": "3", "idUsuario": "3", "quantidade": "5", "dataReserva": "bb", "numero": "101" },
+      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numero": "234" },
+      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numero": "123" },
+      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numero": "456" },
    ]
 }
 
@@ -50,6 +50,15 @@ export const dadosProdutos = () => {
       }
       produtos.push(produto)
    }
+
+   const produto2 = {
+      "id": "1", 
+      "imagem":`a`, 
+      "nome": "a", 
+      "descricao": "a", 
+      "preco": "5000"
+   }
+   produtos.push(produto2)
 
    return produtos
 }

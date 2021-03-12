@@ -30,17 +30,21 @@ const BarraNavegacao = (props) => {
 
          {login.tipoDeUsuario === 'ADMIN' &&
             <>
-               <Link to="/usuarios">
-                  Listar usuários
-               </Link>
                <Link to="/produto/formulario">
                   Cadastrar produto
+               </Link>
+               <Link to="/usuarios">
+                  Listar usuários
                </Link>
                <Link to="/usuario/formulario">
                   Cadastrar usuário
                </Link>
             </>
          }
+
+         <Link to="/reserva">
+            Historico de reservas
+         </Link>
          
          {login.logado === false 
             ? <Link to="/login">Login</Link>
