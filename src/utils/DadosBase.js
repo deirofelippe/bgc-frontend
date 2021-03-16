@@ -2,7 +2,7 @@ import { v1 } from 'uuid';
 
 export const dadosUsuarios = () => {
    return [
-      {"id": '123', "nome": "Feh", "email": "feh@gmail.com", "senha":"123", "tipo":"ADMIN",
+      {"id": '123', "nome": "Feh", "email": "seergiio.felippe@gmail.com", "senha":"123", "tipo":"ADMIN",
       "endereco": {
          "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
       },},
