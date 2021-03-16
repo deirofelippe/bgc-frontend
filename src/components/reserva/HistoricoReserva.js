@@ -16,13 +16,13 @@ const HistoricoReserva = props => {
 
    const login = props.login
 
-   const [historico, setHistorico] = useState(buscarHistorico(
+   const [historico] = useState(buscarHistorico(
       login.id,
       props.reservas,
       props.produtos
    ))
 
-   console.log(historico)
+   console.log(props.reservas)
 
    return (
       <TableContainer component={Paper}>
@@ -42,7 +42,7 @@ const HistoricoReserva = props => {
                         <Link to={`/produto/${item.produto.id}`}>{item.produto.nome}</Link>
                      </TableCell>
                      <TableCell>{item.reserva.quantidade}</TableCell>
-                     <TableCell>{login.nome}</TableCell>
+                     <TableCell>{login.email}</TableCell>
                      <TableCell>{item.reserva.numero}</TableCell>
                   </TableRow>
                ))}

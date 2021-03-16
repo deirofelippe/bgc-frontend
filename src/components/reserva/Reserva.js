@@ -5,6 +5,7 @@ import { buscarProduto } from '../../services/produtoService';
 import { adicionarReserva } from '../../redux/actions/reservaActions';
 import { iniciarEstadoReserva } from '../../utils/inicializandoEstado';
 import { buscarUsuario } from '../../services/usuarioService';
+import axios from 'axios';
 
 const Reserva = props => {
    const { idProduto } = useParams()
@@ -18,22 +19,32 @@ const Reserva = props => {
    const [produto, setProduto] = useState(buscarProduto(props.produtos, idProduto))
    const [statusReserva, setStatusReserva] = useState({ mensagem: '' })
 
-   const handleSubmit = event => {
+   const handleSubmit = async event => {
       event.preventDefault()
       if(reserva.quantidade <= 0){
          return
       }
 
-      setReserva({
+      await setReserva({
          ...reserva, 
          dataReserva: new Date(),
          numero: new Date().getTime()
       })
-      console.log(reserva)
+      // console.log(reserva)
       setStatusReserva({ mensagem: 'Reserva feita!'})
-      props.adicionarReserva(reserva)
-
+      await props.adicionarReserva(reserva)
+      
       const usuario = buscarUsuario(props.usuarios, props.login.id)
+
+      console.log(usuario)
+      console.log(process.env)
+
+      await axios.post(process.env.REACT_APP_AWS_ENVIO_EMAIL, {
+         nome_pessoa: usuario.nome,
+         email: usuario.email,
+         nome: produto.nome, 
+         preco: produto.preco, 
+      });
    }
 
    const handleChange = event => {
