@@ -1,64 +1,63 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { atualizarUsuario } from '../../redux/actions/usuarioActions';
-import { fazerLoginDireto } from '../../redux/actions/loginActions';
-import { buscarCEP, emailNaoPodeSerAtualizado, buscarUsuario } from '../../services/usuarioService';
+import { useParams, useHistory } from 'react-router-dom';
+import { atualizar } from '../../redux/actions/usuarioActions';
+import { fazer_login_direto } from '../../redux/actions/loginActions';
+import { buscar_CEP, verificar_pode_atualizar_email, buscar_usuario } from '../../services/usuarioService';
 
 const AtualizacaoUsuario = props => {
    const { id } = useParams()
    
-   const iniciarEstadoUsuario = () =>{
-      usuarioCompleto = buscarUsuario(props.usuarios, id)
-      const { nome, email, senha, tipo } = usuarioCompleto
+   const iniciar_estado_usuario = () =>{
+      usuario_completo = buscar_usuario(props.usuarios, id)
+      const { nome, email, senha, tipo } = usuario_completo
       return { id, nome, email, senha, tipo }
    }
 
-   const iniciarEstadoEndereco = () =>{
-      return { ...usuarioCompleto.endereco }
+   const iniciar_estado_endereco = () =>{
+      return { ...usuario_completo.endereco }
    }
    
-   let usuarioCompleto
-   const [usuario, setUsuario] = useState(iniciarEstadoUsuario())
-   const [endereco, setEndereco] = useState(iniciarEstadoEndereco())
+   let usuario_completo
+   let history = useHistory()
+   const [usuario, setUsuario] = useState(iniciar_estado_usuario())
+   const [endereco, setEndereco] = useState(iniciar_estado_endereco())
    const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
 
    const handleChangeEndereco = event => {
       const { name, value } = event.target
       setEndereco({ ...endereco, [name]: value })
-      console.log(endereco)
    }
    const handleChangeUsuario = event => {
       const { name, value } = event.target
       setUsuario({ ...usuario, [name]: value })
-      console.log(usuario)
    }
 
    const handleCEP = async event => {
       event.preventDefault()
       const cep = endereco.cep
-      const dados = await buscarCEP(cep)
+      const dados = await buscar_CEP(cep)
       await setEndereco({
          ...endereco,
          estado: dados.uf, cidade: dados.localidade,
          bairro: dados.bairro, endereco: dados.logradouro
       })
-      setCepFoiBuscado(true)
+      await setCepFoiBuscado(true)
    }
 
-   const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
       event.preventDefault()
 
-      const naoPodeSerAtualizado = emailNaoPodeSerAtualizado(props.usuarios, usuario)
-      if (naoPodeSerAtualizado) {
+      if (!verificar_pode_atualizar_email(props.usuarios, usuario)) {
          return
       }
-      const usuarioCompleto = {
+      
+      const usuario_completo = {
          ...usuario,
          endereco: { ...endereco }
       }
       
-      const loginUsuarioCadastrado = {
+      const login_usuario_cadastrado = {
          logado: true,
          id: usuario.id,
          email: usuario.email,
@@ -66,14 +65,10 @@ const AtualizacaoUsuario = props => {
          tipoDeUsuario: usuario.tipo
       }
       
-      props.atualizar(usuarioCompleto)
+      await props.atualizar(usuario_completo)
       
-      if(login.email !== usuario.email){
-         return
-      }
-      
-      props.fazerLoginDireto(loginUsuarioCadastrado)
-      // limparCampos()
+      await props.fazer_login_direto(login_usuario_cadastrado)
+      history.push("/")
    }
 
    const login = props.login
@@ -132,8 +127,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   atualizar: (usuario) => dispatch(atualizarUsuario(usuario)),
-   fazerLoginDireto: (login) => dispatch(fazerLoginDireto(login))
+   atualizar: (usuario) => dispatch(atualizar(usuario)),
+   fazer_login_direto: (login) => dispatch(fazer_login_direto(login))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AtualizacaoUsuario);

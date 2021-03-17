@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { buscarProduto } from '../../services/produtoService';
+import { buscar } from '../../services/produtoService';
 
 const Produto = props => {
    const { id } = useParams()
-   const produto = buscarProduto(props.produtos, id)
+   const produto = buscar(props.produtos, id)
 
    return (
       <div>

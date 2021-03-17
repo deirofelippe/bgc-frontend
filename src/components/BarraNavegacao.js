@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fazerLogout } from '../redux/actions/loginActions';
+import { fazer_logout } from '../redux/actions/loginActions';
 
 const BarraNavegacao = (props) => {
    const useStyles = makeStyles((theme) => ({
@@ -14,10 +14,12 @@ const BarraNavegacao = (props) => {
       },
    }));
    const classes = useStyles();
+   let history = useHistory()
 
    const handleLogout = event => {
       event.preventDefault()
-      props.fazerLogout()
+      props.fazer_logout()
+      history.push('/')
    }
 
    const login = props.login
@@ -63,7 +65,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-   fazerLogout: () => dispatch(fazerLogout())
+   fazer_logout: () => dispatch(fazer_logout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BarraNavegacao);

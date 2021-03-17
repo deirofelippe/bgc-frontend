@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { buscarProduto } from '../../services/produtoService';
-import { adicionarReserva } from '../../redux/actions/reservaActions';
-import { iniciarEstadoReserva } from '../../utils/inicializandoEstado';
-import { buscarUsuario } from '../../services/usuarioService';
+import { buscar_produto } from '../../services/produtoService';
+import { adicionar } from '../../redux/actions/reservaActions';
+import { iniciar_estado_reserva } from '../../utils/inicializandoEstado';
+import { buscar_usuario } from '../../services/usuarioService';
 import axios from 'axios';
 
 const Reserva = props => {
    const { idProduto } = useParams()
 
-   const iniciarEstado = () => {
+   const iniciar_estado = () => {
       const idUsuario = props.login.id
-      return iniciarEstadoReserva(idProduto, idUsuario)
+      return iniciar_estado_reserva(idProduto, idUsuario)
    }
 
-   const [reserva, setReserva] = useState(iniciarEstado())
-   const [produto, setProduto] = useState(buscarProduto(props.produtos, idProduto))
+   const [reserva, setReserva] = useState(iniciar_estado())
+   const [produto, setProduto] = useState(buscar_produto(props.produtos, idProduto))
    const [statusReserva, setStatusReserva] = useState({ mensagem: '' })
 
    const handleSubmit = async event => {
@@ -32,12 +32,9 @@ const Reserva = props => {
       })
       // console.log(reserva)
       setStatusReserva({ mensagem: 'Reserva feita!'})
-      await props.adicionarReserva(reserva)
+      await props.adicionar(reserva)
       
-      const usuario = buscarUsuario(props.usuarios, props.login.id)
-
-      console.log(usuario)
-      console.log(process.env)
+      const usuario = buscar_usuario(props.usuarios, props.login.id)
 
       await axios.post(process.env.REACT_APP_AWS_ENVIO_EMAIL, {
          nome_pessoa: usuario.nome,
@@ -85,7 +82,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   adicionarReserva: (reserva) => dispatch(adicionarReserva(reserva))
+   adicionar: (reserva) => dispatch(adicionar(reserva))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reserva);

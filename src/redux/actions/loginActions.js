@@ -1,19 +1,19 @@
-export const fazerLogin = (dados) => {
+export const fazer_login = (dados) => {
    return {
       type: 'FAZER_LOGIN',
       dados
    }
 }
 
-export const fazerLogout = () => {
-   return {
-      type: 'FAZER_LOGOUT'
-   }
-}
-
-export const fazerLoginDireto = (dados) => {
+export const fazer_login_direto = (dados) => {
    return {
       type: 'FAZER_LOGIN_DIRETO',
       dados
+   }
+}
+
+export const fazer_logout = () => {
+   return {
+      type: 'FAZER_LOGOUT'
    }
 }

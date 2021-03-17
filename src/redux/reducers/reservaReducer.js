@@ -1,24 +1,23 @@
-import { dadosReservas } from '../../utils/DadosBase'
+import { dados_reservas } from '../../utils/baseDeDados'
 
-export default (state = dadosReservas(), action) => {
+export default (state = dados_reservas(), action) => {
    switch (action.type) {
       case 'ADICIONAR_RESERVA':
-         return adicionarReserva(state, action)
+         return adicionar(state, action.dados)
 
       case 'CANCELAR_RESERVA':
-         return deletarReserva(state, action)
+         return deletar(state, action.dados)
 
       default:
          return state
    }
 }
 
-const adicionarReserva = (state, action) => {
-   return [...state, action.dados ]
+const adicionar = (reservas, reserva) => {
+   return [...reservas, reserva ]
 }
 
-const deletarReserva = (state, action) => {
-   const numero = action.dados
-   const reservas = state.filter((reserva) => reserva.numero !== numero)
+const deletar = (reservas, numero) => {
+   reservas = reservas.filter((reserva) => reserva.numero !== numero)
    return [ ...reservas ]
 }

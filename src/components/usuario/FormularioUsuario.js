@@ -1,70 +1,69 @@
 import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import { connect } from 'react-redux';
-import { adicionarUsuario } from '../../redux/actions/usuarioActions';
-import { fazerLoginDireto } from '../../redux/actions/loginActions';
-import { buscarCEP, emailJaExiste } from '../../services/usuarioService';
+import { useHistory } from 'react-router-dom';
+import { adicionar } from '../../redux/actions/usuarioActions';
+import { fazer_login_direto } from '../../redux/actions/loginActions';
+import { buscar_CEP, verificar_email_existe } from '../../services/usuarioService';
 
 const FormularioUsuario = props => {
-   const estadoInicialUsuario = () => {
+   const estado_inicial_usuario = () => {
       return {
          id: v1(), nome: 'a', email: '@gmail.com', senha: "", tipo: "CLIENTE",
       }
    }
 
-   const estadoInicialEndereco = () => {
+   const estado_inicial_endereco = () => {
       return {
          cep: '21550400', estado: '', cidade: '',
          bairro: '', endereco: '', numero: '75',
       }
    }
 
-   const [usuario, setUsuario] = useState(estadoInicialUsuario())
-   const [endereco, setEndereco] = useState(estadoInicialEndereco())
+   let history = useHistory()
+   const [usuario, setUsuario] = useState(estado_inicial_usuario())
+   const [endereco, setEndereco] = useState(estado_inicial_endereco())
    const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
 
    const handleChangeEndereco = event => {
       const { name, value } = event.target
       setEndereco({ ...endereco, [name]: value })
-      console.log(endereco)
    }
    const handleChangeUsuario = event => {
       const { name, value } = event.target
       setUsuario({ ...usuario, [name]: value })
-      console.log(usuario)
    }
 
    const limparCampos = () => {
-      setUsuario({ ...usuario, ...estadoInicialUsuario() })
-      setEndereco({ ...endereco, ...estadoInicialEndereco() })
+      setUsuario({ ...usuario, ...estado_inicial_usuario() })
+      setEndereco({ ...endereco, ...estado_inicial_endereco() })
    }
 
    const handleCEP = async event => {
       event.preventDefault()
       const cep = endereco.cep
-      const dados = await buscarCEP(cep)
+      const dados = await buscar_CEP(cep)
       await setEndereco({
          ...endereco,
          estado: dados.uf, cidade: dados.localidade,
          bairro: dados.bairro, endereco: dados.logradouro
       })
-      console.log(endereco)
       setCepFoiBuscado(true)
    }
 
-   const handleSubmit = (event) => {
+   const handleSubmit = async (event) => {
       event.preventDefault()
 
-      const emailExiste = emailJaExiste(props.usuarios, usuario.email)
-      if (emailExiste) {
+      if (verificar_email_existe(props.usuarios, usuario.email)) {
          return
       }
-      const usuarioCompleto = {
+
+      const usuario_completo = {
          ...usuario,
          endereco: { ...endereco }
       }
 
-      const loginUsuarioCadastrado = {
+      const login_usuario_cadastrado = {
          logado: true,
          id: usuario.id,
          email: usuario.email,
@@ -72,10 +71,11 @@ const FormularioUsuario = props => {
          tipoDeUsuario: usuario.tipo
       }
 
-      props.adicionarUsuario(usuarioCompleto)
+      await props.adicionar(usuario_completo)
 
-      props.fazerLoginDireto(loginUsuarioCadastrado)
-      // limparCampos()
+      await props.fazer_login_direto(login_usuario_cadastrado)
+      
+      history.push("/")
    }
 
    const login = props.login
@@ -134,8 +134,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   adicionarUsuario: (usuario) => dispatch(adicionarUsuario(usuario)),
-   fazerLoginDireto: (login) => dispatch(fazerLoginDireto(login))
+   adicionar: (usuario) => dispatch(adicionar(usuario)),
+   fazer_login_direto: (login) => dispatch(fazer_login_direto(login))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormularioUsuario);

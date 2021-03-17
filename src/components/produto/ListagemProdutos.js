@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletarProduto } from '../../redux/actions/produtoActions';
+import { deletar } from '../../redux/actions/produtoActions';
 
 const ListagemProdutos = (props) => {
    const useStyles = makeStyles({
@@ -18,12 +18,10 @@ const ListagemProdutos = (props) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
          props.deletar(id)
       }
-      // props.deletar(id)
    }
    
    const produtos = props.produtos
    const login = props.login
-   console.log(props.estado)
 
    return (
       <TableContainer component={Paper}>
@@ -73,12 +71,11 @@ const ListagemProdutos = (props) => {
 
 const mapStateToProps = state => ({
    produtos: state.produtos,
-   estado: state,
    login: state.login
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar: (id) => dispatch(deletarProduto(id)),
+   deletar: (id) => dispatch(deletar(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);

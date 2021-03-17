@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import { connect } from 'react-redux';
-import { adicionarProduto } from '../../redux/actions/produtoActions';
+import { adicionar } from '../../redux/actions/produtoActions';
 
 const FormularioProduto = props => {
    const estadoInicial = () => {
@@ -14,6 +14,7 @@ const FormularioProduto = props => {
    }
 
    const [produto, setProduto] = useState(estadoInicial())
+   const [msg, setMsg] = useState('')
 
    const handleChange = event => {
       const { name, value } = event.target
@@ -29,6 +30,7 @@ const FormularioProduto = props => {
       console.log(produto)
       props.adicionar(produto)
       limparCampos()
+      setMsg('Produto cadastrado')
    }
    
    return (
@@ -55,12 +57,15 @@ const FormularioProduto = props => {
          </label>
 
          <input type="submit" value="Cadastrar" />
+         <div>
+            <h1>{msg}</h1>
+         </div>
       </form>
    );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-   adicionar: (produto) => dispatch(adicionarProduto(produto)),
+   adicionar: (produto) => dispatch(adicionar(produto)),
 })
 
 export default connect(() => ({}), mapDispatchToProps)(FormularioProduto);

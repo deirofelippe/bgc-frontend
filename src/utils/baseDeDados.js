@@ -1,6 +1,6 @@
 import { v1 } from 'uuid';
 
-export const dadosUsuarios = () => {
+export const dados_usuarios = () => {
    return [
       {"id": '123', "nome": "Feh", "email": "seergiio.felippe@gmail.com", "senha":"123", "tipo":"ADMIN",
       "endereco": {
@@ -21,7 +21,7 @@ export const dadosUsuarios = () => {
    ]
 }
 
-export const dadosReservas = () => {
+export const dados_reservas = () => {
    return [
       { "idProduto": "1", "idUsuario": "123", "quantidade": "2", "dataReserva": "aa", "numero": "000" },
       { "idProduto": "1", "idUsuario": "123", "quantidade": "5", "dataReserva": "bb", "numero": "101" },
@@ -36,15 +36,14 @@ export const dadosReservas = () => {
    ]
 }
 
-export const dadosProdutos = () => {
+export const dados_produtos = () => {
    let id, produto
    let produtos = []
    for(let indice = 0; indice < 5; indice++){
       id = v1()
       produto = {
          "id": v1(), 
-         "imagem":`produto/${id}`, 
-         "nome": "PC Gamer", 
+         "nome": `Teste ${indice}`, 
          "descricao": "a", 
          "preco": "5000"
       }
@@ -53,8 +52,7 @@ export const dadosProdutos = () => {
 
    const produto2 = {
       "id": "1", 
-      "imagem":`a`, 
-      "nome": "a", 
+      "nome":`a`, 
       "descricao": "a", 
       "preco": "5000"
    }
