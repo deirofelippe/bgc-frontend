@@ -10,8 +10,7 @@ import Produto from './produto/Produto';
 import Usuario from './usuario/Usuario';
 import Login from './Login';
 import CarrinhoCompra from './reserva/CarrinhoCompra';
-// import Reserva from './reserva/Reserva';
-// import HistoricoReserva from './reserva/HistoricoReserva';
+import HistoricoPedido from './reserva/HistoricoPedido';
 
 const Rotas = props => (
    <>
@@ -55,12 +54,9 @@ const Rotas = props => (
       <Route path="/carrinho">
          <CarrinhoCompra />
       </Route>
-      {/* <Route path="/reserva/:idProduto">
-         <Reserva />
+      <Route path="/pedidos">
+         <HistoricoPedido />
       </Route>
-      <Route path="/reserva">
-         <HistoricoReserva />
-      </Route> */}
    </Switch>
 
    </>

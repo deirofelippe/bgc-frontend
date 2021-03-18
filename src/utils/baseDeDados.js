@@ -23,40 +23,166 @@ export const dados_usuarios = () => {
 
 export const dados_reservas = () => {
    return [
-      { "idProduto": "1", "idUsuario": "123", "quantidade": "2", "dataReserva": "aa", "numero": "000" },
-      { "idProduto": "1", "idUsuario": "123", "quantidade": "5", "dataReserva": "bb", "numero": "101" },
-      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numero": "234" },
-      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numero": "123" },
-      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numero": "456" },
-      { "idProduto": "1", "idUsuario": "123", "quantidade": "2", "dataReserva": "aa", "numero": "000" },
-      { "idProduto": "3", "idUsuario": "3", "quantidade": "5", "dataReserva": "bb", "numero": "101" },
-      { "idProduto": "4", "idUsuario": "4", "quantidade": "7", "dataReserva": "dd", "numero": "234" },
-      { "idProduto": "1", "idUsuario": "6", "quantidade": "1", "dataReserva": "ab", "numero": "123" },
-      { "idProduto": "2", "idUsuario": "6", "quantidade": "1", "dataReserva": "cd", "numero": "456" },
-   ]
+      {
+        "id_produto": "1",
+        "quantidade": 5,
+        "numero_pedido": "c8f5eb80-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a1-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a3-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a5-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a7-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a9-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "1",
+        "quantidade": 2,
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a1-87f0-11eb-b154-453384dad18e",
+        "quantidade": 2,
+        "numero_pedido": "d7ad2990-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a3-87f0-11eb-b154-453384dad18e",
+        "quantidade": 4,
+        "numero_pedido": "d7ad2990-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a9-87f0-11eb-b154-453384dad18e",
+        "quantidade": 6,
+        "numero_pedido": "d7ad2990-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a1-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "de3e8740-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a9-87f0-11eb-b154-453384dad18e",
+        "quantidade": 3,
+        "numero_pedido": "de3e8740-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a5-87f0-11eb-b154-453384dad18e",
+        "quantidade": 2,
+        "numero_pedido": "de3e8740-87f1-11eb-9647-b7c27af6831e"
+      },
+      {
+        "id_produto": "eba482a3-87f0-11eb-b154-453384dad18e",
+        "quantidade": 1,
+        "numero_pedido": "de3e8740-87f1-11eb-9647-b7c27af6831e"
+      }
+    ]
+}
+
+export const dados_pedidos = () => {
+   return [
+      {
+        "numero_pedido": "c8f5eb80-87f1-11eb-9647-b7c27af6831e",
+        "id_usuario": "123",
+        "total": 25000,
+        "data_pedido": 1616075809364
+      },
+      {
+        "numero_pedido": "d1901180-87f1-11eb-9647-b7c27af6831e",
+        "id_usuario": "123",
+        "total": 35000,
+        "data_pedido": 1616075823795
+      },
+      {
+        "numero_pedido": "d7ad2990-87f1-11eb-9647-b7c27af6831e",
+        "id_usuario": "123",
+        "total": 60000,
+        "data_pedido": 1616075834040
+      },
+      {
+        "numero_pedido": "de3e8740-87f1-11eb-9647-b7c27af6831e",
+        "id_usuario": "123",
+        "total": 35000,
+        "data_pedido": 1616075845068
+      }
+    ]
 }
 
 export const dados_produtos = () => {
-   let id, produto
-   let produtos = []
-   for(let indice = 0; indice < 5; indice++){
-      id = v1()
-      produto = {
-         "id": v1(), 
-         "nome": `Teste ${indice}`, 
-         "descricao": "a", 
-         "preco": "5000"
+   // let id, produto
+   // let produtos = []
+   // for(let indice = 0; indice < 5; indice++){
+   //    id = v1()
+   //    produto = {
+   //       "id": v1(), 
+   //       "nome": `Teste ${indice}`, 
+   //       "descricao": "a", 
+   //       "preco": "5000"
+   //    }
+   //    produtos.push(produto)
+   // }
+
+   // const produto2 = {
+   //    "id": "1", 
+   //    "nome":`a`, 
+   //    "descricao": "a", 
+   //    "preco": "5000"
+   // }
+   // produtos.push(produto2)
+
+   return [
+      {
+        "id": "eba482a1-87f0-11eb-b154-453384dad18e",
+        "nome": "Teste 0",
+        "descricao": "a",
+        "preco": "5000"
+      },
+      {
+        "id": "eba482a3-87f0-11eb-b154-453384dad18e",
+        "nome": "Teste 1",
+        "descricao": "a",
+        "preco": "5000"
+      },
+      {
+        "id": "eba482a5-87f0-11eb-b154-453384dad18e",
+        "nome": "Teste 2",
+        "descricao": "a",
+        "preco": "5000"
+      },
+      {
+        "id": "eba482a7-87f0-11eb-b154-453384dad18e",
+        "nome": "Teste 3",
+        "descricao": "a",
+        "preco": "5000"
+      },
+      {
+        "id": "eba482a9-87f0-11eb-b154-453384dad18e",
+        "nome": "Teste 4",
+        "descricao": "a",
+        "preco": "5000"
+      },
+      {
+        "id": "1",
+        "nome": "a",
+        "descricao": "a",
+        "preco": "5000"
       }
-      produtos.push(produto)
-   }
-
-   const produto2 = {
-      "id": "1", 
-      "nome":`a`, 
-      "descricao": "a", 
-      "preco": "5000"
-   }
-   produtos.push(produto2)
-
-   return produtos
+   ]
 }

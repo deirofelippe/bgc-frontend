@@ -73,6 +73,9 @@ const CarrinhoCompra = (props) => {
       await props.adicionar_pedido({numero_pedido, id_usuario, total})
 
       props.limpar_carrinho(id_usuario)
+
+      console.log(props.pedidos)
+      console.log(props.reservas)
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))

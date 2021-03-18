@@ -50,7 +50,7 @@ const BarraNavegacao = (props) => {
             </>
          }
 
-         <Link to="/reserva">
+         <Link to="/pedidos">
             Historico de pedidos
          </Link>
          

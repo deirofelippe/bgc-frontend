@@ -1,4 +1,6 @@
-export default (state = [], action) => {
+import { dados_reservas } from '../../utils/baseDeDados'
+
+export default (state = dados_reservas(), action) => {
    switch (action.type) {
       case 'FINALIZAR_RESERVA':
          return finalizar(state, action.dados)
@@ -11,15 +13,7 @@ export default (state = [], action) => {
 const finalizar = (state, reserva) => {
    const id_usuario = reserva.id_usuario
    const numero_pedido = reserva.numero_pedido
-   // const carrinho = reserva.carrinho
-   let carrinho = reserva.carrinho
-
-   carrinho = [
-      {id_produto: '1', quantidade: 5, id_usuario: '123'},
-      {id_produto: '1', quantidade: 5, id_usuario: '23'},
-      {id_produto: '1', quantidade: 5, id_usuario: '123'},
-      {id_produto: '1', quantidade: 2, id_usuario: '456'}
-   ]
+   const carrinho = reserva.carrinho
 
    reserva = carrinho.filter((item) => (item.id_usuario === id_usuario))
 
@@ -30,8 +24,6 @@ const finalizar = (state, reserva) => {
          numero_pedido
       }
    })
-
-   console.log(reserva)
 
    return [...state, ...reserva ]
 }
