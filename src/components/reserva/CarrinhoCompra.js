@@ -19,18 +19,12 @@ const CarrinhoCompra = (props) => {
       setTotalExibir(total_formatado)
    }, [])
 
-   const handleDelete = (id) => {
+   const deletar_item = (id, preco, quantidade) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
-         props.deletar_do_carrinho(id)
+         props.deletar_item(id)
+         total = total - (preco * quantidade)
+         setTotalExibir(formatar_valor(total))
       }
-   }
-
-   const handleChange = (event, id) => {
-      //quantidade 
-      console.log(event.target)
-      console.log(event.target.value)
-      // props.atualizar_quantidade(id)
-      // console.log(props.carrinho)
    }
 
    const formatar_valor = preco => {
@@ -78,25 +72,30 @@ const CarrinhoCompra = (props) => {
                <TableBody>
                   {carrinho.map((item) => {
                      produto_carrinho = produtos.find(produto => produto.id === item.id_produto)
+
                      const subtotal = produto_carrinho.preco * item.quantidade
                      total += subtotal
+                     const preco = produto_carrinho.preco
+                     const quantidade = item.quantidade
+                     const id = item.id_produto
+                     const nome = produto_carrinho.nome
 
                      return(
                         <TableRow key={item.id_produto}>
                            <TableCell>
-                              <Link to={`/produto/${item.id_produto}`}>{produto_carrinho.nome}</Link>
+                              <Link to={`/produto/${id}`}>{nome}</Link>
                            </TableCell>
-                           <TableCell>{formatar_valor(produto_carrinho.preco)}</TableCell>
+                           <TableCell>{formatar_valor(preco)}</TableCell>
                            <TableCell>
-                              <input type="text" value={item.quantidade} disabled />
-                              <button onClick={() => incrementar_quantidade(item.id_produto, produto_carrinho.preco)}>+</button>
-                              <button onClick={() => decrementar_quantidade(item.id_produto, produto_carrinho.preco, item.quantidade)}>-</button>
+                              <input type="text" value={quantidade} disabled />
+                              <button onClick={() => incrementar_quantidade(id, preco)}>+</button>
+                              <button onClick={() => decrementar_quantidade(id, preco, quantidade)}>-</button>
                            </TableCell>
                            <TableCell>
                               {formatar_valor(subtotal)}
                            </TableCell>
                            <TableCell>
-                              <button onClick={() => handleDelete(item.id_produto)}>Deletar</button>
+                              <button onClick={() => deletar_item(id, preco, quantidade)}>Deletar</button>
                            </TableCell>
                         </TableRow>
                      )
@@ -114,7 +113,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar_do_carrinho: (id_produto) => dispatch(deletar(id_produto)),
+   deletar_item: (id_produto) => dispatch(deletar(id_produto)),
    incrementar_quantidade: (id_produto) => dispatch(incrementar(id_produto)),
    decrementar_quantidade: (id_produto) => dispatch(decrementar(id_produto))
 })

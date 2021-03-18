@@ -67,6 +67,6 @@ const decrementar = (carrinho, id_produto) => {
 }
 
 const deletar = (carrinho, id_produto) => {
-   carrinho = carrinho.filter((id) => id !== id_produto)
+   carrinho = carrinho.filter((item) => item.id_produto !== id_produto)
    return [ ...carrinho ]
 }
