@@ -24,6 +24,7 @@ const FormularioUsuario = props => {
    const [usuario, setUsuario] = useState(estado_inicial_usuario())
    const [endereco, setEndereco] = useState(estado_inicial_endereco())
    const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
+   const [msg, setMsg] = useState('')
 
    const handleChangeEndereco = event => {
       const { name, value } = event.target
@@ -55,6 +56,7 @@ const FormularioUsuario = props => {
       event.preventDefault()
 
       if (verificar_email_existe(props.usuarios, usuario.email)) {
+         setMsg('Email ja cadastrado.')
          return
       }
 
@@ -124,6 +126,10 @@ const FormularioUsuario = props => {
          </label>
 
          <input type="submit" value="Cadastrar" />
+         
+         <h1>
+            {msg}
+         </h1>
       </form>
    );
 }

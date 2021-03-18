@@ -23,6 +23,7 @@ const BarraNavegacao = (props) => {
    }
 
    const login = props.login
+   const qtd_itens_carrinho = props.carrinho.length
 
    return (
       <Typography className={classes.root}>
@@ -45,13 +46,14 @@ const BarraNavegacao = (props) => {
          }
 
          <Link to="/reserva">
-            Historico de reservas
+            Historico de pedidos
          </Link>
          
          {login.logado === false 
             ? <Link to="/login">Login</Link>
             : 
                <>
+                  <Link to={'/carrinho'}>Carrinho ({qtd_itens_carrinho})</Link>
                   <Link to={`/usuario/${login.id}`}>Olá, {login.nome}</Link>
                   <button onClick={handleLogout}>Logout</button>
                </>
@@ -61,7 +63,8 @@ const BarraNavegacao = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-   login: state.login
+   login: state.login,
+   carrinho: state.carrinho
 })
 
 const mapDispatchToProps = (dispatch) => ({

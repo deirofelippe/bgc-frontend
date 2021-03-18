@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { deletar } from '../../redux/actions/produtoActions';
+import { adicionar } from '../../redux/actions/carrinhoActions';
 
 const ListagemProdutos = (props) => {
    const useStyles = makeStyles({
@@ -16,8 +17,24 @@ const ListagemProdutos = (props) => {
 
    const handleDelete = (id) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
-         props.deletar(id)
+         props.deletar_produto(id)
       }
+   }
+
+   const handleSubmit = (id_produto) => {
+      if(login.logado == false){
+         alert("Faça login para reservar um produto.")
+         return
+      }
+      props.adicionar_no_carrinho(id_produto)
+   }
+
+   const formatarPreco = preco => {
+      const formatter = new Intl.NumberFormat('pt-BR', 
+         { style: 'currency', currency: 'BRL' }
+      );
+
+      return formatter.format(preco)
    }
    
    const produtos = props.produtos
@@ -47,9 +64,9 @@ const ListagemProdutos = (props) => {
                         <Link to={`/produto/${produto.id}`}>{produto.nome}</Link>
                      </TableCell>
                      <TableCell>{produto.descricao}</TableCell>
-                     <TableCell>{produto.preco}</TableCell>
+                     <TableCell>{formatarPreco(produto.preco)}</TableCell>
                      <TableCell>
-                        <Link to={`/reserva/${produto.id}`}>Comprar</Link>
+                        <button onClick={() => handleSubmit(produto.id)}>Reservar</button>
                      </TableCell>
                      {login.tipoDeUsuario === 'ADMIN' &&
                         <>
@@ -75,7 +92,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar: (id) => dispatch(deletar(id)),
+   deletar_produto: (id) => dispatch(deletar(id)),
+   adicionar_no_carrinho: (id_produto) => dispatch(adicionar(id_produto))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);

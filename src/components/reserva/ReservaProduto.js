@@ -7,16 +7,16 @@ import { iniciar_estado_reserva } from '../../utils/inicializandoEstado';
 import { buscar_usuario } from '../../services/usuarioService';
 import axios from 'axios';
 
-const Reserva = props => {
-   const { idProduto } = useParams()
+const ReservaProduto = props => {
+   const { id_produto } = useParams()
 
    const iniciar_estado = () => {
-      const idUsuario = props.login.id
-      return iniciar_estado_reserva(idProduto, idUsuario)
+      const id_usuario = props.login.id
+      return iniciar_estado_reserva(id_produto, id_usuario)
    }
 
    const [reserva, setReserva] = useState(iniciar_estado())
-   const [produto, setProduto] = useState(buscar_produto(props.produtos, idProduto))
+   const [produto, setProduto] = useState(buscar_produto(props.produtos, id_produto))
    const [statusReserva, setStatusReserva] = useState({ mensagem: '' })
 
    const handleSubmit = async event => {
@@ -63,7 +63,7 @@ const Reserva = props => {
                <input type="number" name="quantidade" value={reserva.quantidade} onChange={handleChange} />
             </label>
             {login.logado === true
-            ? <button onClick={handleSubmit}>Fazer reserva</button>
+            ? <button onClick={handleSubmit}>Reservar</button>
             : <Link to="/login">Faça login para reservar o produto</Link>
             }
             
@@ -85,4 +85,4 @@ const mapDispatchToProps = dispatch => ({
    adicionar: (reserva) => dispatch(adicionar(reserva))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reserva);
+export default connect(mapStateToProps, mapDispatchToProps)(ReservaProduto);

@@ -9,7 +9,7 @@ const FormularioProduto = props => {
          id: v1(),
          nome: 'a',
          descricao: 'b',
-         preco: 'c',
+         preco: '10',
       }
    }
 
@@ -27,10 +27,9 @@ const FormularioProduto = props => {
 
    const handleSubmit = (event) => {
       event.preventDefault()
-      console.log(produto)
       props.adicionar(produto)
       limparCampos()
-      setMsg('Produto cadastrado')
+      setMsg('Produto cadastrado.')
    }
    
    return (
