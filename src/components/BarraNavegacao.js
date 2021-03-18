@@ -23,7 +23,12 @@ const BarraNavegacao = (props) => {
    }
 
    const login = props.login
-   const qtd_itens_carrinho = props.carrinho.length
+   let qtd_itens_carrinho = 0
+   props.carrinho.forEach((item) => {
+      if(item.id_usuario === props.login.id){
+         qtd_itens_carrinho += 1
+      }
+   })
 
    return (
       <Typography className={classes.root}>

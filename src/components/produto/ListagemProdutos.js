@@ -21,12 +21,12 @@ const ListagemProdutos = (props) => {
       }
    }
 
-   const handleSubmit = (id_produto) => {
+   const handleSubmit = (id_produto, id_usuario) => {
       if(login.logado == false){
          alert("Faça login para reservar um produto.")
          return
       }
-      props.adicionar_no_carrinho(id_produto)
+      props.adicionar_no_carrinho({id_produto, id_usuario})
    }
 
    const formatarPreco = preco => {
@@ -66,7 +66,7 @@ const ListagemProdutos = (props) => {
                      <TableCell>{produto.descricao}</TableCell>
                      <TableCell>{formatarPreco(produto.preco)}</TableCell>
                      <TableCell>
-                        <button onClick={() => handleSubmit(produto.id)}>Reservar</button>
+                        <button onClick={() => handleSubmit(produto.id, login.id)}>Reservar</button>
                      </TableCell>
                      {login.tipoDeUsuario === 'ADMIN' &&
                         <>
@@ -93,7 +93,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
    deletar_produto: (id) => dispatch(deletar(id)),
-   adicionar_no_carrinho: (id_produto) => dispatch(adicionar(id_produto))
+   adicionar_no_carrinho: (ids) => dispatch(adicionar(ids))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);

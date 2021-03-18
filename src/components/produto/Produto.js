@@ -10,7 +10,10 @@ const Produto = props => {
    const login = props.login
 
    const handleSubmit = () => {
-      props.adicionar_no_carrinho(id)
+      props.adicionar_no_carrinho({
+         id_produto: id, 
+         id_usuario: login.id_usuario
+      })
    }
 
    const formatarPreco = preco => {
@@ -41,7 +44,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   adicionar_no_carrinho: (id_produto) => dispatch(adicionar(id_produto))
+   adicionar_no_carrinho: (ids) => dispatch(adicionar(ids))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Produto);

@@ -19,9 +19,9 @@ const CarrinhoCompra = (props) => {
       setTotalExibir(total_formatado)
    }, [])
 
-   const deletar_item = (id, preco, quantidade) => {
+   const deletar_item = (id_produto, preco, quantidade) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
-         props.deletar_item(id)
+         props.deletar_item({id_produto, id_usuario: props.login.id})
          total = total - (preco * quantidade)
          setTotalExibir(formatar_valor(total))
       }
@@ -36,7 +36,7 @@ const CarrinhoCompra = (props) => {
    }
 
    const incrementar_quantidade = (id_produto, preco) => {
-      props.incrementar_quantidade(id_produto)
+      props.incrementar_quantidade({id_produto, id_usuario: props.login.id})
       console.log(total + preco)
       setTotalExibir(formatar_valor(total + parseFloat(preco)))
    }
@@ -45,8 +45,22 @@ const CarrinhoCompra = (props) => {
       if(quantidade <= 1){
          return
       }
-      props.decrementar_quantidade(id_produto)
+      props.decrementar_quantidade({id_produto, id_usuario: props.login.id})
       setTotalExibir(formatar_valor(total - parseFloat(preco)))
+   }
+
+   const finalizar_reserva = () => {
+      let qtd_itens_carrinho = 0
+      carrinho.forEach((item) => {
+         if(item.id_usuario === props.login.id){
+            qtd_itens_carrinho += 1
+         }
+      })
+
+      if(qtd_itens_carrinho <= 0){
+         alert('Não é possivel finalizar compra com o carrinho vazio.')
+         return
+      }
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
@@ -58,6 +72,7 @@ const CarrinhoCompra = (props) => {
    return (
       <>
          <h1>Total: {totalExibir}</h1>
+         <button onClick={finalizar_reserva}>Finalizar Reserva</button>
          <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
                <TableHead>
@@ -71,6 +86,10 @@ const CarrinhoCompra = (props) => {
                </TableHead>
                <TableBody>
                   {carrinho.map((item) => {
+                     if(item.id_usuario !== props.login.id){
+                        return (<></>)
+                     }
+
                      produto_carrinho = produtos.find(produto => produto.id === item.id_produto)
 
                      const subtotal = produto_carrinho.preco * item.quantidade
@@ -109,13 +128,15 @@ const CarrinhoCompra = (props) => {
 
 const mapStateToProps = state => ({
    carrinho: state.carrinho,
-   produtos: state.produtos
+   produtos: state.produtos,
+   login: state.login
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar_item: (id_produto) => dispatch(deletar(id_produto)),
-   incrementar_quantidade: (id_produto) => dispatch(incrementar(id_produto)),
-   decrementar_quantidade: (id_produto) => dispatch(decrementar(id_produto))
+   deletar_item: (ids) => dispatch(deletar(ids)),
+   incrementar_quantidade: (ids) => dispatch(incrementar(ids)),
+   decrementar_quantidade: (ids) => dispatch(decrementar(ids)),
+   finalizar_reserva: () => dispatch(finalizar()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarrinhoCompra);

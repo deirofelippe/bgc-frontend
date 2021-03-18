@@ -1,4 +1,4 @@
-export default (state = [{id_produto: '1', quantidade: 1}], action) => {
+export default (state = [{id_produto: '1', quantidade: 1, id_usuario: '123'}], action) => {
    switch (action.type) {
       case 'ADICIONAR_NO_CARRINHO':
          return adicionar(state, action.dados)
@@ -17,11 +17,10 @@ export default (state = [{id_produto: '1', quantidade: 1}], action) => {
    }
 }
 
-const adicionar = (carrinho, id_produto) => {
-   
+const adicionar = (carrinho, ids) => {
    let produto_existe = false
    carrinho = carrinho.map((item) => {
-      if(item.id_produto === id_produto){
+      if((item.id_produto === ids.id_produto) && (item.id_usuario === ids.id_usuario)){
          produto_existe = true
          item.quantidade += 1
          return item
@@ -31,7 +30,8 @@ const adicionar = (carrinho, id_produto) => {
 
    if(!produto_existe){
       const item = { 
-         id_produto, 
+         id_produto: ids.id_produto, 
+         id_usuario: ids.id_usuario, 
          quantidade: 1, 
          numero_pedido: 0 
       }
@@ -42,9 +42,9 @@ const adicionar = (carrinho, id_produto) => {
    return [...carrinho ]
 }
 
-const incrementar = (carrinho, id_produto) => {
+const incrementar = (carrinho, ids) => {
    carrinho = carrinho.map((item) => {
-      if(item.id_produto === id_produto){
+      if((item.id_produto === ids.id_produto) && (item.id_usuario === ids.id_usuario)){
          item.quantidade += 1
          return item
       }
@@ -54,9 +54,10 @@ const incrementar = (carrinho, id_produto) => {
    return [...carrinho ]
 }
 
-const decrementar = (carrinho, id_produto) => {
+const decrementar = (carrinho, ids) => {
    carrinho = carrinho.map((item) => {
-      if(item.id_produto === id_produto && item.quantidade > 1){
+      if((item.id_produto === ids.id_produto) && (item.quantidade > 1)
+         && (item.id_usuario === ids.id_usuario)){
          item.quantidade -= 1
          return item
       }
@@ -66,7 +67,7 @@ const decrementar = (carrinho, id_produto) => {
    return [...carrinho ]
 }
 
-const deletar = (carrinho, id_produto) => {
-   carrinho = carrinho.filter((item) => item.id_produto !== id_produto)
+const deletar = (carrinho, ids) => {
+   carrinho = carrinho.filter((item) => ((item.id_produto !== ids.id_produto) && (item.id_usuario === ids.id_usuario)))
    return [ ...carrinho ]
 }
