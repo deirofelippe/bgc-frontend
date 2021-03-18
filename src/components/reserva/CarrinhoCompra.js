@@ -3,9 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { v1 } from 'uuid';
 import { deletar, incrementar, decrementar } from '../../redux/actions/carrinhoActions';
+import { finalizar } from '../../redux/actions/reservaActions';
+import { adicionar } from '../../redux/actions/pedidoActions';
 
 const CarrinhoCompra = (props) => {
+   const id_usuario = props.login.id
    const useStyles = makeStyles({
       table: {
          minWidth: 650,
@@ -21,7 +25,7 @@ const CarrinhoCompra = (props) => {
 
    const deletar_item = (id_produto, preco, quantidade) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
-         props.deletar_item({id_produto, id_usuario: props.login.id})
+         props.deletar_item({id_produto, id_usuario})
          total = total - (preco * quantidade)
          setTotalExibir(formatar_valor(total))
       }
@@ -36,7 +40,7 @@ const CarrinhoCompra = (props) => {
    }
 
    const incrementar_quantidade = (id_produto, preco) => {
-      props.incrementar_quantidade({id_produto, id_usuario: props.login.id})
+      props.incrementar_quantidade({id_produto, id_usuario})
       console.log(total + preco)
       setTotalExibir(formatar_valor(total + parseFloat(preco)))
    }
@@ -45,14 +49,14 @@ const CarrinhoCompra = (props) => {
       if(quantidade <= 1){
          return
       }
-      props.decrementar_quantidade({id_produto, id_usuario: props.login.id})
+      props.decrementar_quantidade({id_produto, id_usuario})
       setTotalExibir(formatar_valor(total - parseFloat(preco)))
    }
 
-   const finalizar_reserva = () => {
+   const finalizar_reserva = async () => {
       let qtd_itens_carrinho = 0
       carrinho.forEach((item) => {
-         if(item.id_usuario === props.login.id){
+         if(item.id_usuario === id_usuario){
             qtd_itens_carrinho += 1
          }
       })
@@ -61,6 +65,11 @@ const CarrinhoCompra = (props) => {
          alert('Não é possivel finalizar compra com o carrinho vazio.')
          return
       }
+
+      const numero_pedido = v1()
+      
+      await props.finalizar_reserva({carrinho, id_usuario, numero_pedido})
+      await props.adicionar_pedido({numero_pedido, id_usuario, total})
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
@@ -129,6 +138,8 @@ const CarrinhoCompra = (props) => {
 const mapStateToProps = state => ({
    carrinho: state.carrinho,
    produtos: state.produtos,
+   reservas: state.reservas,
+   pedidos: state.pedidos,
    login: state.login
 })
 
@@ -136,7 +147,8 @@ const mapDispatchToProps = dispatch => ({
    deletar_item: (ids) => dispatch(deletar(ids)),
    incrementar_quantidade: (ids) => dispatch(incrementar(ids)),
    decrementar_quantidade: (ids) => dispatch(decrementar(ids)),
-   finalizar_reserva: () => dispatch(finalizar()),
+   finalizar_reserva: (reserva) => dispatch(finalizar(reserva)),
+   adicionar_pedido: (pedido) => dispatch(adicionar(pedido))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarrinhoCompra);
