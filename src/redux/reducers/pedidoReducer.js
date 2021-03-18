@@ -10,6 +10,5 @@ export default (state = [], action) => {
 
 const adicionar = (state, pedido) => {
    pedido.data_pedido = Date.now()
-   console.log(pedido)
    return [...state, pedido ]
 }

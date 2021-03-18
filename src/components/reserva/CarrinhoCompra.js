@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { v1 } from 'uuid';
 import { deletar, incrementar, decrementar } from '../../redux/actions/carrinhoActions';
 import { finalizar } from '../../redux/actions/reservaActions';
+import { limpar } from '../../redux/actions/carrinhoActions';
 import { adicionar } from '../../redux/actions/pedidoActions';
 
 const CarrinhoCompra = (props) => {
@@ -70,6 +71,8 @@ const CarrinhoCompra = (props) => {
       
       await props.finalizar_reserva({carrinho, id_usuario, numero_pedido})
       await props.adicionar_pedido({numero_pedido, id_usuario, total})
+
+      props.limpar_carrinho(id_usuario)
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
@@ -147,6 +150,7 @@ const mapDispatchToProps = dispatch => ({
    deletar_item: (ids) => dispatch(deletar(ids)),
    incrementar_quantidade: (ids) => dispatch(incrementar(ids)),
    decrementar_quantidade: (ids) => dispatch(decrementar(ids)),
+   limpar_carrinho: (id_usuario) => dispatch(limpar(id_usuario)),
    finalizar_reserva: (reserva) => dispatch(finalizar(reserva)),
    adicionar_pedido: (pedido) => dispatch(adicionar(pedido))
 })

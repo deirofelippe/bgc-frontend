@@ -12,14 +12,17 @@ export default (state = [{id_produto: '1', quantidade: 1, id_usuario: '123'}], a
       case 'DECREMENTAR_QUANTIDADE':
          return decrementar(state, action.dados)
 
+      case 'LIMPAR_CARRINHO':
+         return limpar(state, action.dados)
+
       default:
          return state
    }
 }
 
-const adicionar = (carrinho, ids) => {
+const adicionar = (state, ids) => {
    let produto_existe = false
-   carrinho = carrinho.map((item) => {
+   state = state.map((item) => {
       if((item.id_produto === ids.id_produto) && (item.id_usuario === ids.id_usuario)){
          produto_existe = true
          item.quantidade += 1
@@ -36,14 +39,14 @@ const adicionar = (carrinho, ids) => {
          numero_pedido: 0 
       }
 
-      return [...carrinho, item ]
+      return [...state, item ]
    }
 
-   return [...carrinho ]
+   return [...state ]
 }
 
-const incrementar = (carrinho, ids) => {
-   carrinho = carrinho.map((item) => {
+const incrementar = (state, ids) => {
+   state = state.map((item) => {
       if((item.id_produto === ids.id_produto) && (item.id_usuario === ids.id_usuario)){
          item.quantidade += 1
          return item
@@ -51,11 +54,11 @@ const incrementar = (carrinho, ids) => {
       return item
    })
 
-   return [...carrinho ]
+   return [...state ]
 }
 
-const decrementar = (carrinho, ids) => {
-   carrinho = carrinho.map((item) => {
+const decrementar = (state, ids) => {
+   state = state.map((item) => {
       if((item.id_produto === ids.id_produto) && (item.quantidade > 1)
          && (item.id_usuario === ids.id_usuario)){
          item.quantidade -= 1
@@ -64,10 +67,15 @@ const decrementar = (carrinho, ids) => {
       return item
    })
 
-   return [...carrinho ]
+   return [...state ]
 }
 
-const deletar = (carrinho, ids) => {
-   carrinho = carrinho.filter((item) => ((item.id_produto !== ids.id_produto) && (item.id_usuario === ids.id_usuario)))
-   return [ ...carrinho ]
+const deletar = (state, ids) => {
+   state = state.filter((item) => ((item.id_produto !== ids.id_produto) && (item.id_usuario === ids.id_usuario)))
+   return [ ...state ]
+}
+
+const limpar = (state, id_usuario) => {
+   state = state.filter((item) => item.id_usuario !== id_usuario)
+   return [ ...state ]
 }

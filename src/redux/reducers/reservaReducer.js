@@ -8,8 +8,7 @@ export default (state = [], action) => {
    }
 }
 
-const finalizar = (reservas, reserva) => {
-   //gera numero do pedido e o pedido
+const finalizar = (state, reserva) => {
    const id_usuario = reserva.id_usuario
    const numero_pedido = reserva.numero_pedido
    // const carrinho = reserva.carrinho
@@ -34,5 +33,5 @@ const finalizar = (reservas, reserva) => {
 
    console.log(reserva)
 
-   return [...reservas, ...reserva ]
+   return [...state, ...reserva ]
 }

@@ -16,21 +16,21 @@ export default (state = dados_produtos(), action) => {
    }
 }
 
-const adicionar = (produtos, produto) => {
-   return [...produtos, produto ]
+const adicionar = (state, produto) => {
+   return [...state, produto ]
 }
 
-const atualizar = (produtos, produtoNovo) => {
-   produtos = produtos.map(produtoAntigo => {
+const atualizar = (state, produtoNovo) => {
+   state = state.map(produtoAntigo => {
       if (produtoAntigo.id === produtoNovo.id) {
          return produtoNovo
       }
       return produtoAntigo
    })
-   return [ ...produtos ]
+   return [ ...state ]
 }
 
-const deletar = (produtos, id) => {
-   produtos = produtos.filter((produto) => produto.id !== id)
-   return [ ...produtos ]
+const deletar = (state, id) => {
+   state = state.filter((produto) => produto.id !== id)
+   return [ ...state ]
 }

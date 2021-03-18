@@ -25,3 +25,10 @@ export const decrementar = (dados) => {
       dados
    }
 }
+
+export const limpar = (dados) => {
+   return {
+      type: 'LIMPAR_CARRINHO',
+      dados
+   }
+}

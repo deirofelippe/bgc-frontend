@@ -16,21 +16,21 @@ export default (state = dados_usuarios(), action) => {
    }
 }
 
-const adicionar = (usuarios, usuario) => {
-   return [ ...usuarios, usuario ]
+const adicionar = (state, usuario) => {
+   return [ ...state, usuario ]
 }
 
-const atualizar = (usuarios, usuarioNovo) => {
-   usuarios = usuarios.map(usuarioAntigo => {
+const atualizar = (state, usuarioNovo) => {
+   state = state.map(usuarioAntigo => {
       if (usuarioAntigo.id === usuarioNovo.id) {
          return usuarioNovo
       }
       return usuarioAntigo
    })
-   return [ ...usuarios ]
+   return [ ...state ]
 }
 
-const deletar = (usuarios, id) => {
-   usuarios = usuarios.filter((usuario) => usuario.id !== id)
-   return [ ...usuarios ]
+const deletar = (state, id) => {
+   state = state.filter((usuario) => usuario.id !== id)
+   return [ ...state ]
 }
