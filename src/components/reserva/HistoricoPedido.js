@@ -60,7 +60,7 @@ const HistoricoPedido = props => {
       >
 
          {props.pedidos.map((pedido) => {
-            const reservas = props.reservas.filter(reserva => reserva.id_usuario !== id_usuario)
+            const reservas = props.reservas.filter(reserva => reserva.numero_pedido === pedido.numero_pedido)
             let qtd_itens = 0
 
             const linha_tabela = reservas.map((reserva, index) => {
@@ -86,13 +86,13 @@ const HistoricoPedido = props => {
             return (
                <>
                   <ListItem button>
-                     <ListItemText primary={`Itens: ${qtd_itens} - Total: ${formatar_valor(pedido.total)} - 
-                                             Data: ${formatar_data(pedido.data_pedido)} - 
+                     <ListItemText primary={`Itens: ${qtd_itens}   -   Total: ${formatar_valor(pedido.total)}   - 
+                                               Data: ${formatar_data(pedido.data_pedido)}   -   
                                              Pedido: ${pedido.numero_pedido}`} className={classes.h2} />
                   </ListItem>
 
                   <Collapse in={true} timeout="auto" unmountOnExit>
-                     <TableContainer className={[classes.nested, classes.tabela]}>
+                     <TableContainer className={`${classes.nested} ${classes.tabela}`}>
                         <Table>
                            <TableHead>
                               <TableRow>

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v1 } from 'uuid';
 import { deletar, incrementar, decrementar } from '../../redux/actions/carrinhoActions';
+import { enviar_email, preparar_reservas, preparar_pedido } from '../../services/reservaService';
 import { finalizar } from '../../redux/actions/reservaActions';
 import { limpar } from '../../redux/actions/carrinhoActions';
 import { adicionar } from '../../redux/actions/pedidoActions';
@@ -42,7 +43,6 @@ const CarrinhoCompra = (props) => {
 
    const incrementar_quantidade = (id_produto, preco) => {
       props.incrementar_quantidade({id_produto, id_usuario})
-      console.log(total + preco)
       setTotalExibir(formatar_valor(total + parseFloat(preco)))
    }
 
@@ -68,14 +68,16 @@ const CarrinhoCompra = (props) => {
       }
 
       const numero_pedido = v1()
+
+      const reservas = preparar_reservas(carrinho, id_usuario, numero_pedido)
+      const pedido = preparar_pedido({numero_pedido, id_usuario, total})
+
+      await props.finalizar_reserva(reservas)
+      await props.adicionar_pedido(pedido)
+
+      enviar_email(pedido, reservas, props.produtos, props.login)
       
-      await props.finalizar_reserva({carrinho, id_usuario, numero_pedido})
-      await props.adicionar_pedido({numero_pedido, id_usuario, total})
-
       props.limpar_carrinho(id_usuario)
-
-      console.log(props.pedidos)
-      console.log(props.reservas)
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
