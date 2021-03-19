@@ -9,14 +9,14 @@ import { buscar_CEP, verificar_email_existe } from '../../services/usuarioServic
 const FormularioUsuario = props => {
    const estado_inicial_usuario = () => {
       return {
-         id: v1(), nome: 'a', email: '@gmail.com', senha: "", tipo: "CLIENTE",
+         id: v1(), nome: '', email: '', senha: "", tipo_de_usuario: "CLIENTE",
       }
    }
 
    const estado_inicial_endereco = () => {
       return {
-         cep: '21550400', estado: '', cidade: '',
-         bairro: '', endereco: '', numero: '75',
+         cep: '', estado: '', cidade: '',
+         bairro: '', endereco: '', numero: '',
       }
    }
 
@@ -75,8 +75,12 @@ const FormularioUsuario = props => {
 
       await props.adicionar(usuario_completo)
 
+      if(login.tipo_de_usuario === 'ADMIN'){
+         history.push("/usuarios")
+         return
+      }
+
       await props.fazer_login_direto(login_usuario_cadastrado)
-      
       history.push("/")
    }
 
@@ -96,7 +100,7 @@ const FormularioUsuario = props => {
             <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
          </label>
 
-         {login.tipoDeUsuario === 'ADMIN' &&
+         {login.tipo_de_usuario === 'ADMIN' &&
             <>
                <label>Tipo de usuário: 
                   <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>

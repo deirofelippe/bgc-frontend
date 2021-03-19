@@ -9,11 +9,12 @@ const Produto = props => {
    const produto = buscar(props.produtos, id)
    const login = props.login
 
-   const handleSubmit = () => {
-      props.adicionar_no_carrinho({
-         id_produto: id, 
-         id_usuario: login.id_usuario
-      })
+   const handleSubmit = (id_produto, id_usuario) => {
+      if(login.logado == false){
+         alert("Faça login para reservar um produto.")
+         return
+      }
+      props.adicionar_no_carrinho({id_produto, id_usuario})
    }
 
    const formatarPreco = preco => {
@@ -31,7 +32,7 @@ const Produto = props => {
          <h1>{formatarPreco(produto.preco)}</h1>
          
          {login.logado === true
-            ? <button onClick={handleSubmit}>Reservar</button>
+            ? <button onClick={() => handleSubmit(produto.id, login.id)}>Reservar</button>
             : <Link to="/login">Faça login para reservar o produto</Link>
          }
       </div>

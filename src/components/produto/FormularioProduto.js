@@ -7,9 +7,9 @@ const FormularioProduto = props => {
    const estadoInicial = () => {
       return {
          id: v1(),
-         nome: 'a',
-         descricao: 'b',
-         preco: '10',
+         nome: '',
+         descricao: '',
+         preco: '',
       }
    }
 

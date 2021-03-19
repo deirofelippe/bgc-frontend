@@ -41,7 +41,7 @@ const ListagemUsuarios = (props) => {
                         <Link to={`/usuario/${usuario.id}`}>{usuario.nome}</Link>
                      </TableCell>
                      <TableCell>{usuario.email}</TableCell>
-                     <TableCell>{usuario.tipo}</TableCell>
+                     <TableCell>{usuario.tipo_de_usuario}</TableCell>
                      <TableCell>
                         <Link to={`/usuario/atualizacao/${usuario.id}`}>Editar</Link>
                      </TableCell>

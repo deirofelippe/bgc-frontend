@@ -8,13 +8,18 @@ const Usuario = props => {
    const usuario = buscar_usuario(props.usuarios, id)
    const endereco = usuario.endereco
    const login = props.login
+   console.log(usuario)
+   console.log(login)
 
    return (
       <div>
          <h2>Nome: {usuario.nome}</h2>
-         <h1>E-mail: {usuario.email}</h1>
-         {login.tipoDeUsuario === 'ADMIN' &&
-            <h2>Senha: {usuario.senha}</h2>
+         <h2>E-mail: {usuario.email}</h2>
+         {login.tipo_de_usuario === 'ADMIN' &&
+            <>
+               <h1>Tipo de usuario: {usuario.tipo_de_usuario}</h1>
+               <h2>Senha: {usuario.senha}</h2>
+            </>
          }
          
          <h2>CEP: {endereco.cep}</h2>

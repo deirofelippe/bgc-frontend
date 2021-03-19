@@ -30,13 +30,15 @@ const BarraNavegacao = (props) => {
       }
    })
 
+   console.log(login)
+
    return (
       <Typography className={classes.root}>
          <Link to="/">
             Listar produtos
          </Link>
 
-         {login.tipoDeUsuario === 'ADMIN' &&
+         {login.tipo_de_usuario === 'ADMIN' &&
             <>
                <Link to="/produto/formulario">
                   Cadastrar produto
@@ -50,14 +52,13 @@ const BarraNavegacao = (props) => {
             </>
          }
 
-         <Link to="/pedidos">
-            Historico de pedidos
-         </Link>
-         
          {login.logado === false 
             ? <Link to="/login">Login</Link>
             : 
                <>
+                  <Link to="/pedidos">
+                     Historico de pedidos
+                  </Link>
                   <Link to={'/carrinho'}>Carrinho ({qtd_itens_carrinho})</Link>
                   <Link to={`/usuario/${login.id}`}>Olá, {login.nome}</Link>
                   <button onClick={handleLogout}>Logout</button>
