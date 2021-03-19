@@ -10,7 +10,7 @@ const Produto = props => {
    const login = props.login
 
    const handleSubmit = (id_produto, id_usuario) => {
-      if(login.logado == false){
+      if(login.logado === false){
          alert("Faça login para reservar um produto.")
          return
       }

@@ -130,38 +130,32 @@ export const dados_produtos = () => {
       {
         "id": "eba482a1-87f0-11eb-b154-453384dad18e",
         "nome": "Teste 0",
-        "descricao": "a",
-        "preco": "5000"
+        "descricao": "oasdi",
+        "preco": "5000.25"
       },
       {
         "id": "eba482a3-87f0-11eb-b154-453384dad18e",
         "nome": "Teste 1",
-        "descricao": "a",
-        "preco": "5000"
+        "descricao": "akajsdnkdsajn",
+        "preco": "50"
       },
       {
         "id": "eba482a5-87f0-11eb-b154-453384dad18e",
         "nome": "Teste 2",
-        "descricao": "a",
-        "preco": "5000"
+        "descricao": "alskdclcskm kjsad",
+        "preco": "125.82"
       },
       {
         "id": "eba482a7-87f0-11eb-b154-453384dad18e",
         "nome": "Teste 3",
-        "descricao": "a",
-        "preco": "5000"
+        "descricao": "avc dawl",
+        "preco": "2530.00"
       },
       {
         "id": "eba482a9-87f0-11eb-b154-453384dad18e",
         "nome": "Teste 4",
-        "descricao": "a",
-        "preco": "5000"
-      },
-      {
-        "id": "1",
-        "nome": "a",
-        "descricao": "a",
-        "preco": "5000"
+        "descricao": "amsdkfmlfsdkmlsd",
+        "preco": "829.99"
       }
    ]
 }

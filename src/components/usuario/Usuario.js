@@ -8,8 +8,6 @@ const Usuario = props => {
    const usuario = buscar_usuario(props.usuarios, id)
    const endereco = usuario.endereco
    const login = props.login
-   console.log(usuario)
-   console.log(login)
 
    return (
       <div>
@@ -28,7 +26,7 @@ const Usuario = props => {
          <h2>Bairro: {endereco.bairro}</h2>
          <h2>Endereço: {endereco.endereco}</h2>
          <h2>Número: {endereco.numero}</h2>
-         <Link to={`/usuario/atualizacao/${login.id}`}>Atualizar</Link>
+         <Link to={`/usuario/atualizacao/${usuario.id}`}>Atualizar</Link>
       </div>
    );
 }

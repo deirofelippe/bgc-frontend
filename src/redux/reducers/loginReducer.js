@@ -1,12 +1,5 @@
 import { iniciar_estado_login } from '../../utils/inicializandoEstado'
 import { buscar_usuario_por_email } from '../../services/usuarioService'
-// const login = {
-//    logado: true,
-//    id: '123',
-//    email: 'f@gmail.com',
-//    nome: 'Feh',
-//    tipoDeUsuario: 'ADMIN'
-// }
 
 export default (state = iniciar_estado_login(), action) => {
    switch (action.type) {

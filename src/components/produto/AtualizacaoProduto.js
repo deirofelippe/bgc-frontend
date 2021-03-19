@@ -3,10 +3,13 @@ import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { atualizar } from '../../redux/actions/produtoActions';
 import { buscar } from '../../services/produtoService';
+import { validar_preco } from '../../utils/validacoes';
 
 const EditProduto = props => {
    const { id } = useParams()
    let history = useHistory()
+
+   const [msg, setMsg] = useState('')
 
    const iniciarEstado = () => {
       return buscar(props.produtos, id)
@@ -21,6 +24,21 @@ const EditProduto = props => {
 
    const handleUpdate = (event) => {
       event.preventDefault()
+      if(!validar_preco(produto.preco)){
+         setMsg('Digite um preço válido')
+         return
+      }
+      let preco = produto.preco.toString()
+      preco = preco.replace(',', '.')
+      preco = parseFloat(preco)
+      preco = preco.toFixed(2)
+      produto.preco = preco
+
+      if(produto.nome === ''){
+         setMsg('Digite o nome do produto')
+         return
+      }
+
       props.atualizar(produto)
       history.push('/')
    }
@@ -45,7 +63,11 @@ const EditProduto = props => {
             value={produto.preco}
             onChange={handleChange} />
 
-         <button onClick={(event) => handleUpdate(event)}>Editar</button>
+         <button onClick={handleUpdate}>Editar</button>
+
+         <div>
+            <h1>{msg}</h1>
+         </div>
       </form>
    );
 }

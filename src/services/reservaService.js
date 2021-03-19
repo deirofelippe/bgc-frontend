@@ -25,7 +25,7 @@ export const enviar_email = async (pedido, reservas, produtos, usuario) => {
       ]
    }
 
-   await axios.post(process.env.REACT_APP_AWS_ENVIO_EMAIL, {
+   await axios.post(process.env.REACT_APP_URL_POST_PEDIDO, {
       pedido: pedido_enviar
    });
 }

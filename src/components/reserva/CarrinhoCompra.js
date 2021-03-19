@@ -27,10 +27,12 @@ const CarrinhoCompra = (props) => {
 
    const classes = useStyles()
 
+   let total = 0
+
    useEffect(() => {
       const total_formatado = formatar_valor(total)
       setTotalExibir(total_formatado)
-   }, [])
+   }, [total])
 
    const deletar_item = (id_produto, preco, quantidade) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
@@ -38,6 +40,10 @@ const CarrinhoCompra = (props) => {
          total = total - (preco * quantidade)
          setTotalExibir(formatar_valor(total))
       }
+   }
+
+   const deletar_item_inexistente = (id_produto) => {
+      props.deletar_item({id_produto, id_usuario})
    }
 
    const formatar_valor = preco => {
@@ -85,13 +91,13 @@ const CarrinhoCompra = (props) => {
       enviar_email(pedido, reservas, props.produtos, props.login)
       
       props.limpar_carrinho(id_usuario)
+      setTotalExibir(formatar_valor(0))
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
    const carrinho = props.carrinho
    const produtos = props.produtos
    let produto_carrinho
-   let total = 0
 
    return (
       <>
@@ -115,6 +121,11 @@ const CarrinhoCompra = (props) => {
                      }
 
                      produto_carrinho = produtos.find(produto => produto.id === item.id_produto)
+
+                     if(produto_carrinho === undefined){
+                        deletar_item_inexistente(item.id_produto)
+                        return(<></>)
+                     }
 
                      const subtotal = produto_carrinho.preco * item.quantidade
                      total += subtotal

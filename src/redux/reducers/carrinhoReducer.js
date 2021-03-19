@@ -1,4 +1,4 @@
-export default (state = [{id_produto: '1', quantidade: 1, id_usuario: '123'}], action) => {
+export default (state = [], action) => {
    switch (action.type) {
       case 'ADICIONAR_NO_CARRINHO':
          return adicionar(state, action.dados)

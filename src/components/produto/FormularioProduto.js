@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import { connect } from 'react-redux';
 import { adicionar } from '../../redux/actions/produtoActions';
+import { validar_preco } from '../../utils/validacoes';
 
 const FormularioProduto = props => {
    const estadoInicial = () => {
@@ -27,13 +28,28 @@ const FormularioProduto = props => {
 
    const handleSubmit = (event) => {
       event.preventDefault()
+      if(!validar_preco(produto.preco)){
+         setMsg('Digite um preço válido')
+         return
+      }
+      let preco = produto.preco.toString()
+      preco = preco.replace(',', '.')
+      preco = parseFloat(preco)
+      preco = preco.toFixed(2)
+      produto.preco = preco
+
+      if(produto.nome === ''){
+         setMsg('Digite o nome do produto')
+         return
+      }
+
       props.adicionar(produto)
       limparCampos()
       setMsg('Produto cadastrado.')
    }
    
    return (
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <form onSubmit={handleSubmit}>
          <label>Nome: 
             <input type="text"
                name="nome"
