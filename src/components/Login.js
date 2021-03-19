@@ -6,13 +6,9 @@ import { verificar_login_existe } from '../services/usuarioService';
 
 const Login = props => {
    const [login, setLogin] = useState({
-      email: 'c@gmail.com',
+      email: 'f@gmail.com',
       senha: '123'
    })
-   // const [login, setLogin] = useState({
-   //    email: 'seergiio.felippe@gmail.com',
-   //    senha: '123'
-   // })
 
    const [msg, setMsg] = useState({
       msg: ''

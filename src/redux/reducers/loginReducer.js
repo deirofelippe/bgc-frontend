@@ -1,15 +1,14 @@
 import { iniciar_estado_login } from '../../utils/inicializandoEstado'
 import { buscar_usuario_por_email } from '../../services/usuarioService'
-const login = {
-   logado: true,
-   id: '123',
-   email: 'feh@gmail.com',
-   nome: 'Feh',
-   tipoDeUsuario: 'ADMIN'
-}
+// const login = {
+//    logado: true,
+//    id: '123',
+//    email: 'f@gmail.com',
+//    nome: 'Feh',
+//    tipoDeUsuario: 'ADMIN'
+// }
 
-// export default (state = iniciar_estado_login(), action) => {
-export default (state = login, action) => {
+export default (state = iniciar_estado_login(), action) => {
    switch (action.type) {
       case 'FAZER_LOGIN':
          return fazer_login(state, action.dados)
@@ -35,7 +34,7 @@ const fazer_login = (state, dados) => {
          id: usuario.id,
          email: usuario.email,
          nome: usuario.nome,
-         tipoDeUsuario: usuario.tipo
+         tipo_de_usuario: usuario.tipo
    }
 
    return { ...state, ...usuarioLogado }

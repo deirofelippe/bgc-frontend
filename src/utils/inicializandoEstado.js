@@ -4,7 +4,7 @@ export const iniciar_estado_login = () => {
       id: '',
       email: '',
       nome: '',
-      tipoDeUsuario: ''
+      tipo_de_usuario: ''
    }
 }
 

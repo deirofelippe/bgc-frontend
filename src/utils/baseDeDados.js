@@ -2,7 +2,7 @@ import { v1 } from 'uuid';
 
 export const dados_usuarios = () => {
    return [
-      {"id": '123', "nome": "Feh", "email": "seergiio.felippe@gmail.com", "senha":"123", "tipo":"ADMIN",
+      {"id": '123', "nome": "Feh", "email": "f@gmail.com", "senha":"123", "tipo":"ADMIN",
       "endereco": {
          "cep": "21550400", "estado": "RJ", "cidade": "Rio de Janeiro", "bairro": "Bento Ribeiro", "endereco": "Rua Picuí", "numero": "00",
       },},
@@ -126,27 +126,6 @@ export const dados_pedidos = () => {
 }
 
 export const dados_produtos = () => {
-   // let id, produto
-   // let produtos = []
-   // for(let indice = 0; indice < 5; indice++){
-   //    id = v1()
-   //    produto = {
-   //       "id": v1(), 
-   //       "nome": `Teste ${indice}`, 
-   //       "descricao": "a", 
-   //       "preco": "5000"
-   //    }
-   //    produtos.push(produto)
-   // }
-
-   // const produto2 = {
-   //    "id": "1", 
-   //    "nome":`a`, 
-   //    "descricao": "a", 
-   //    "preco": "5000"
-   // }
-   // produtos.push(produto2)
-
    return [
       {
         "id": "eba482a1-87f0-11eb-b154-453384dad18e",

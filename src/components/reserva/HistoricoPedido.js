@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { List, ListItem, ListItemText, Collapse, ListSubheader } from '@material-ui/core';
@@ -31,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
 const HistoricoPedido = props => {
    const classes = useStyles();
 
+   let history = useHistory()
+
+   if(props.login.logado === false){
+      history.push('/')
+   }
+
    const id_usuario = props.login.id
 
    const formatar_valor = valor => {
@@ -60,6 +66,10 @@ const HistoricoPedido = props => {
       >
 
          {props.pedidos.map((pedido) => {
+            if(pedido.id_usuario !== id_usuario){
+               return (<></>)
+            }
+
             const reservas = props.reservas.filter(reserva => reserva.numero_pedido === pedido.numero_pedido)
             let qtd_itens = 0
 

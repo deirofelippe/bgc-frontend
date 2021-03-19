@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v1 } from 'uuid';
 import { deletar, incrementar, decrementar } from '../../redux/actions/carrinhoActions';
@@ -11,6 +11,13 @@ import { limpar } from '../../redux/actions/carrinhoActions';
 import { adicionar } from '../../redux/actions/pedidoActions';
 
 const CarrinhoCompra = (props) => {
+
+   let history = useHistory()
+
+   if(props.login.logado === false){
+      history.push('/')
+   }
+
    const id_usuario = props.login.id
    const useStyles = makeStyles({
       table: {
