@@ -21,7 +21,6 @@ const ListagemUsuarios = (props) => {
    }
    
    const usuarios = props.usuarios
-   //nome, email e tipo
    return (
       <TableContainer component={Paper}>
          <Table className={classes.table} aria-label="simple table">

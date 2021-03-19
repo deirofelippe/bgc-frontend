@@ -22,7 +22,7 @@ const ListagemProdutos = (props) => {
    }
 
    const handleSubmit = (id_produto, id_usuario) => {
-      if(login.logado == false){
+      if(login.logado === false){
          alert("Faça login para reservar um produto.")
          return
       }
@@ -49,7 +49,7 @@ const ListagemProdutos = (props) => {
                   <TableCell>Descrição</TableCell>
                   <TableCell>Preço</TableCell>
                   <TableCell>#</TableCell>
-                  {login.tipoDeUsuario === 'ADMIN' &&
+                  {login.tipo_de_usuario === 'ADMIN' &&
                      <>
                         <TableCell>#</TableCell>
                         <TableCell>#</TableCell>
@@ -68,7 +68,7 @@ const ListagemProdutos = (props) => {
                      <TableCell>
                         <button onClick={() => handleSubmit(produto.id, login.id)}>Reservar</button>
                      </TableCell>
-                     {login.tipoDeUsuario === 'ADMIN' &&
+                     {login.tipo_de_usuario === 'ADMIN' &&
                         <>
                            <TableCell>
                               <Link to={`/produto/atualizacao/${produto.id}`}>Editar</Link>

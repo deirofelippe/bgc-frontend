@@ -88,6 +88,11 @@ const AtualizacaoUsuario = props => {
       }
       
       await props.atualizar(usuario_completo)
+
+      if(login.tipo_de_usuario === 'ADMIN'){
+         history.push("/usuarios")
+         return
+      }
       
       await props.fazer_login_direto(login_usuario_cadastrado)
       history.push("/")

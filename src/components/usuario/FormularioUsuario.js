@@ -36,11 +36,6 @@ const FormularioUsuario = props => {
       setUsuario({ ...usuario, [name]: value })
    }
 
-   const limparCampos = () => {
-      setUsuario({ ...usuario, ...estado_inicial_usuario() })
-      setEndereco({ ...endereco, ...estado_inicial_endereco() })
-   }
-
    const handleCEP = async event => {
       event.preventDefault()
       const cep = endereco.cep

@@ -4,7 +4,6 @@ export const buscarHistorico = (idUsuario, reservas, produtos) => {
    
    reservas.forEach(reserva => {
       produtos.forEach(produto => {
-         console.log(reserva.dataReserva)
          if(produto.id === reserva.idProduto){
             historico.push({
                produto,

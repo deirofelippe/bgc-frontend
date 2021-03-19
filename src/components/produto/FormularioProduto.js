@@ -28,7 +28,6 @@ const FormularioProduto = props => {
 
    const handleSubmit = (event) => {
       event.preventDefault()
-      console.log(validar_preco(produto.preco))
       if(!validar_preco(produto.preco)){
          setMsg('Digite um preço válido')
          return

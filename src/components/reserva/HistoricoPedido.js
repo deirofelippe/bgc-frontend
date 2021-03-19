@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@material-ui/core';
 import { List, ListItem, ListItemText, Collapse, ListSubheader } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -75,6 +74,10 @@ const HistoricoPedido = props => {
 
             const linha_tabela = reservas.map((reserva, index) => {
                const produto = props.produtos.find(produto => produto.id === reserva.id_produto)
+               if(produto === undefined){
+                  return (<></>)
+               }
+               
                const sub_total = formatar_valor(produto.preco * reserva.quantidade)
                if(reserva.numero_pedido !== pedido.numero_pedido){
                   return (<></>)
