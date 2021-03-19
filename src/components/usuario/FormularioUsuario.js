@@ -9,7 +9,7 @@ import { buscar_CEP, verificar_email_existe } from '../../services/usuarioServic
 const FormularioUsuario = props => {
    const estado_inicial_usuario = () => {
       return {
-         id: v1(), nome: '', email: '', senha: "", tipo: "CLIENTE",
+         id: v1(), nome: '', email: '', senha: "", tipo_de_usuario: "CLIENTE",
       }
    }
 
@@ -77,6 +77,7 @@ const FormularioUsuario = props => {
 
       if(login.tipo_de_usuario === 'ADMIN'){
          history.push("/usuarios")
+         return
       }
 
       await props.fazer_login_direto(login_usuario_cadastrado)

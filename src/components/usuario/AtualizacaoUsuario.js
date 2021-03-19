@@ -10,8 +10,8 @@ const AtualizacaoUsuario = props => {
    
    const iniciar_estado_usuario = () =>{
       usuario_completo = buscar_usuario(props.usuarios, id)
-      const { nome, email, senha, tipo } = usuario_completo
-      return { id, nome, email, senha, tipo }
+      const { nome, email, senha, tipo_de_usuario } = usuario_completo
+      return { id, nome, email, senha, tipo_de_usuario }
    }
 
    const iniciar_estado_endereco = () =>{
@@ -62,7 +62,7 @@ const AtualizacaoUsuario = props => {
          id: usuario.id,
          email: usuario.email,
          nome: usuario.nome,
-         tipoDeUsuario: usuario.tipo
+         tipo_de_usuario: usuario.tipo_de_usuario
       }
       
       await props.atualizar(usuario_completo)
@@ -87,10 +87,10 @@ const AtualizacaoUsuario = props => {
             <input type="password" name="senha" value={usuario.senha} onChange={handleChangeUsuario} />
          </label>
 
-         {login.tipoDeUsuario === 'ADMIN' &&
+         {login.tipo_de_usuario === 'ADMIN' &&
             <>
                <label>Tipo de usuário: 
-                  <select name="tipo" value={usuario.tipo} onChange={handleChangeUsuario}>
+                  <select name="tipo_de_usuario" value={usuario.tipo_de_usuario} onChange={handleChangeUsuario}>
                      <option value="CLIENTE">Cliente</option>
                      <option value="ADMIN">Administrador</option>
                   </select>

@@ -30,6 +30,8 @@ const BarraNavegacao = (props) => {
       }
    })
 
+   console.log(login)
+
    return (
       <Typography className={classes.root}>
          <Link to="/">

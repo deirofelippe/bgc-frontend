@@ -34,7 +34,7 @@ const fazer_login = (state, dados) => {
          id: usuario.id,
          email: usuario.email,
          nome: usuario.nome,
-         tipo_de_usuario: usuario.tipo
+         tipo_de_usuario: usuario.tipo_de_usuario
    }
 
    return { ...state, ...usuarioLogado }
