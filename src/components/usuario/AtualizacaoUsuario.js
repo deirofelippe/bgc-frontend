@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import { atualizar } from '../../redux/actions/usuarioActions';
 import { fazer_login_direto } from '../../redux/actions/loginActions';
 import { buscar_CEP, verificar_pode_atualizar_email, buscar_usuario } from '../../services/usuarioService';
+import { validar_email } from '../../utils/validacoes';
 
 const AtualizacaoUsuario = props => {
    const { id } = useParams()
@@ -23,6 +24,7 @@ const AtualizacaoUsuario = props => {
    const [usuario, setUsuario] = useState(iniciar_estado_usuario())
    const [endereco, setEndereco] = useState(iniciar_estado_endereco())
    const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
+   const [msg, setMsg] = useState('')
 
    const handleChangeEndereco = event => {
       const { name, value } = event.target
@@ -47,6 +49,26 @@ const AtualizacaoUsuario = props => {
 
    const handleSubmit = async (event) => {
       event.preventDefault()
+
+      if(usuario.nome === ''){
+         setMsg('Digite um nome valido.')
+         return
+      }
+
+      if(usuario.email === ''){
+         setMsg('Digite um email valido.')
+         return
+      }
+
+      if(!validar_email(usuario.email)){
+         setMsg('Digite um email valido.')
+         return
+      }
+      
+      if(usuario.senha === ''){
+         setMsg('Digite uma senha valida.')
+         return
+      }
 
       if (!verificar_pode_atualizar_email(props.usuarios, usuario)) {
          return
@@ -117,6 +139,10 @@ const AtualizacaoUsuario = props => {
          </label>
 
          <input type="submit" value="Atualizar" />
+
+         <div>
+            <h1>{msg}</h1>
+         </div>
       </form>
    );
 }

@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { adicionar } from '../../redux/actions/usuarioActions';
 import { fazer_login_direto } from '../../redux/actions/loginActions';
 import { buscar_CEP, verificar_email_existe } from '../../services/usuarioService';
+import { validar_email } from '../../utils/validacoes';
 
 const FormularioUsuario = props => {
    const estado_inicial_usuario = () => {
@@ -54,6 +55,26 @@ const FormularioUsuario = props => {
 
    const handleSubmit = async (event) => {
       event.preventDefault()
+
+      if(usuario.nome === ''){
+         setMsg('Digite um nome valido.')
+         return
+      }
+
+      if(usuario.email === ''){
+         setMsg('Digite um email valido.')
+         return
+      }
+
+      if(!validar_email(usuario.email)){
+         setMsg('Digite um email valido.')
+         return
+      }
+      
+      if(usuario.senha === ''){
+         setMsg('Digite uma senha valida.')
+         return
+      }
 
       if (verificar_email_existe(props.usuarios, usuario.email)) {
          setMsg('Email ja cadastrado.')
