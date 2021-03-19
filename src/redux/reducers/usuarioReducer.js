@@ -1,39 +1,36 @@
-import { dadosUsuarios } from '../../utils/DadosBase'
+import { dados_usuarios } from '../../utils/baseDeDados'
 
-export default (state = dadosUsuarios(), action) => {
+export default (state = dados_usuarios(), action) => {
    switch (action.type) {
       case 'ADICIONAR_USUARIO':
-         return adicionarUsuario(state, action)
+         return adicionar(state, action.dados)
 
       case 'ATUALIZAR_USUARIO':
-         return atualizarUsuario(state, action)
+         return atualizar(state, action.dados)
 
       case 'DELETAR_USUARIO':
-         return deletarUsuario(state, action)
+         return deletar(state, action.dados)
 
       default:
          return state
    }
 }
 
-const adicionarUsuario = (state, action) => {
-   return [ ...state, action.dados ]
+const adicionar = (state, usuario) => {
+   return [ ...state, usuario ]
 }
 
-const atualizarUsuario = (state, action) => {
-   const usuarioNovo = action.dados
-   const usuarios = state.map(usuarioAntigo => {
+const atualizar = (state, usuarioNovo) => {
+   state = state.map(usuarioAntigo => {
       if (usuarioAntigo.id === usuarioNovo.id) {
          return usuarioNovo
       }
       return usuarioAntigo
    })
-   console.log(usuarios)
-   return [...usuarios ]
+   return [ ...state ]
 }
 
-const deletarUsuario = (state, action) => {
-   const id = action.dados
-   const usuarios = state.filter((usuario) => usuario.id !== id)
-   return [ ...usuarios ]
+const deletar = (state, id) => {
+   state = state.filter((usuario) => usuario.id !== id)
+   return [ ...state ]
 }

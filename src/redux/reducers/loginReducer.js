@@ -1,4 +1,5 @@
-import { iniciarEstadoLogin } from '../../utils/inicializandoEstado'
+import { iniciar_estado_login } from '../../utils/inicializandoEstado'
+import { buscar_usuario_por_email } from '../../services/usuarioService'
 const login = {
    logado: true,
    id: '123',
@@ -7,49 +8,44 @@ const login = {
    tipoDeUsuario: 'ADMIN'
 }
 
+// export default (state = iniciar_estado_login(), action) => {
 export default (state = login, action) => {
    switch (action.type) {
       case 'FAZER_LOGIN':
-         return fazerLogin(state, action)
+         return fazer_login(state, action.dados)
 
       case 'FAZER_LOGIN_DIRETO':
-         return fazerLoginDireto(state, action)
+         return fazer_login_direto(state, action.dados)
 
       case 'FAZER_LOGOUT':
-         return fazerLogout(state)
+         return fazer_logout(state)
 
       default:
          return state
    }
 }
 
-const fazerLogin = (state, action) => {
-   const login = action.dados.login
-   const usuarios = action.dados.usuarios
-   
-   const usuario = usuarios.find(usuario => {
-      if ((login.email === usuario.email) && (login.senha === usuario.senha)) {
-         return usuario
-      }
-      return undefined
-   })
+const fazer_login = (state, dados) => {
+   const { usuarios, login } = dados
+
+   const usuario = buscar_usuario_por_email(usuarios, login.email)
 
    const usuarioLogado = {
-      logado: true,
-      id: usuario.id,
-      email: usuario.email,
-      nome: usuario.nome,
-      tipoDeUsuario: usuario.tipo
+         logado: true,
+         id: usuario.id,
+         email: usuario.email,
+         nome: usuario.nome,
+         tipoDeUsuario: usuario.tipo
    }
+
    return { ...state, ...usuarioLogado }
 }
 
-const fazerLogout = (state) => {
-   const logout = iniciarEstadoLogin()
+const fazer_logout = (state) => {
+   const logout = iniciar_estado_login()
    return { ...state, ...logout }
 }
 
-const fazerLoginDireto = (state, action) => {
-   const login = action.dados
+const fazer_login_direto = (state, login) => {
    return { ...state, ...login }
 }

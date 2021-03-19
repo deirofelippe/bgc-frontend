@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { atualizarProduto } from '../../redux/actions/produtoActions';
-import { buscarProduto } from '../../services/produtoService';
+import { atualizar } from '../../redux/actions/produtoActions';
+import { buscar } from '../../services/produtoService';
 
 const EditProduto = props => {
    const { id } = useParams()
+   let history = useHistory()
 
    const iniciarEstado = () => {
-      return buscarProduto(props.produtos, id)
+      return buscar(props.produtos, id)
    }
 
    const [produto, setProduto] = useState(iniciarEstado)
@@ -21,7 +22,7 @@ const EditProduto = props => {
    const handleUpdate = (event) => {
       event.preventDefault()
       props.atualizar(produto)
-      // console.log(produto)
+      history.push('/')
    }
 
    return (
@@ -54,7 +55,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   atualizar: (produto) => dispatch(atualizarProduto(produto)),
+   atualizar: (produto) => dispatch(atualizar(produto)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProduto);

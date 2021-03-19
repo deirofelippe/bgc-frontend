@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { buscarUsuario } from '../../services/usuarioService';
+import { buscar_usuario } from '../../services/usuarioService';
 
 const Usuario = props => {
    const { id } = useParams()
-   const usuario = buscarUsuario(props.usuarios, id)
+   const usuario = buscar_usuario(props.usuarios, id)
    const endereco = usuario.endereco
    const login = props.login
 

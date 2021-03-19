@@ -1,38 +1,36 @@
-import { dadosProdutos } from '../../utils/DadosBase'
+import { dados_produtos } from '../../utils/baseDeDados'
 
-export default (state = dadosProdutos(), action) => {
+export default (state = dados_produtos(), action) => {
    switch (action.type) {
       case 'ADICIONAR_PRODUTO':
-         return adicionarProduto(state, action)
+         return adicionar(state, action.dados)
 
       case 'ATUALIZAR_PRODUTO':
-         return atualizarProduto(state, action)
+         return atualizar(state, action.dados)
 
       case 'DELETAR_PRODUTO':
-         return deletarProduto(state, action)
+         return deletar(state, action.dados)
 
       default:
          return state
    }
 }
 
-const adicionarProduto = (state, action) => {
-   return [...state, action.dados ]
+const adicionar = (state, produto) => {
+   return [...state, produto ]
 }
 
-const atualizarProduto = (state, action) => {
-   const produtoNovo = action.dados
-   const produtos = state.map(produtoAntigo => {
+const atualizar = (state, produtoNovo) => {
+   state = state.map(produtoAntigo => {
       if (produtoAntigo.id === produtoNovo.id) {
          return produtoNovo
       }
       return produtoAntigo
    })
-   return [...produtos]
+   return [ ...state ]
 }
 
-const deletarProduto = (state, action) => {
-   const id = action.dados
-   const produtos = state.filter((produto) => produto.id !== id)
-   return [ ...produtos ]
+const deletar = (state, id) => {
+   state = state.filter((produto) => produto.id !== id)
+   return [ ...state ]
 }

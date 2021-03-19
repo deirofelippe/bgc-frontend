@@ -9,8 +9,8 @@ import AtualizacaoUsuario from './usuario/AtualizacaoUsuario';
 import Produto from './produto/Produto';
 import Usuario from './usuario/Usuario';
 import Login from './Login';
-import Reserva from './reserva/Reserva';
-import HistoricoReserva from './reserva/HistoricoReserva';
+import CarrinhoCompra from './reserva/CarrinhoCompra';
+import HistoricoPedido from './reserva/HistoricoPedido';
 
 const Rotas = props => (
    <>
@@ -51,11 +51,11 @@ const Rotas = props => (
    </Switch>
 
    <Switch>
-      <Route path="/reserva/:idProduto">
-         <Reserva />
+      <Route path="/carrinho">
+         <CarrinhoCompra />
       </Route>
-      <Route path="/reserva">
-         <HistoricoReserva />
+      <Route path="/pedidos">
+         <HistoricoPedido />
       </Route>
    </Switch>
 

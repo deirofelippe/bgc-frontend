@@ -1,6 +1,4 @@
-import { v1 } from 'uuid';
-
-export const iniciarEstadoLogin = () => {
+export const iniciar_estado_login = () => {
    return {
       logado: false,
       id: '',
@@ -10,18 +8,18 @@ export const iniciarEstadoLogin = () => {
    }
 }
 
-export const iniciarEstadoProduto = () => {
+export const iniciar_estado_produto = () => {
    return {
-      id: v1(),
+      id: '',
       nome: '',
       descricao: '',
       preco: '',
    }
 }
 
-export const iniciarEstadoUsuario = () => {
+export const iniciar_estado_usuario = () => {
    return {
-      id: v1(),
+      id: '',
       nome: '',
       email: '',
       senha: '',
@@ -37,12 +35,18 @@ export const iniciarEstadoUsuario = () => {
    }
 }
 
-export const iniciarEstadoReserva = (idProduto = '', idUsuario = '') => {
+export const iniciar_estado_reserva = () => {
    return {
-      idProduto: idProduto, 
-      idUsuario: idUsuario, 
-      quantidade: '1', 
-      dataReserva: '', 
-      numero: ''
+      numero_pedido: '', 
+      id_produto: '', 
+      quantidade: '1'
+   }
+}
+
+export const iniciar_estado_pedido = () => {
+   return {
+      id_usuario: '', 
+      data_reserva: '', 
+      numero_pedido: ''
    }
 }

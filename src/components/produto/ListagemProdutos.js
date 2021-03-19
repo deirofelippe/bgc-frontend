@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletarProduto } from '../../redux/actions/produtoActions';
+import { deletar } from '../../redux/actions/produtoActions';
+import { adicionar } from '../../redux/actions/carrinhoActions';
 
 const ListagemProdutos = (props) => {
    const useStyles = makeStyles({
@@ -16,14 +17,28 @@ const ListagemProdutos = (props) => {
 
    const handleDelete = (id) => {
       if(window.confirm("Tem certeza que deseja deletar?")){
-         props.deletar(id)
+         props.deletar_produto(id)
       }
-      // props.deletar(id)
+   }
+
+   const handleSubmit = (id_produto, id_usuario) => {
+      if(login.logado == false){
+         alert("Faça login para reservar um produto.")
+         return
+      }
+      props.adicionar_no_carrinho({id_produto, id_usuario})
+   }
+
+   const formatarPreco = preco => {
+      const formatter = new Intl.NumberFormat('pt-BR', 
+         { style: 'currency', currency: 'BRL' }
+      );
+
+      return formatter.format(preco)
    }
    
    const produtos = props.produtos
    const login = props.login
-   console.log(props.estado)
 
    return (
       <TableContainer component={Paper}>
@@ -49,9 +64,9 @@ const ListagemProdutos = (props) => {
                         <Link to={`/produto/${produto.id}`}>{produto.nome}</Link>
                      </TableCell>
                      <TableCell>{produto.descricao}</TableCell>
-                     <TableCell>{produto.preco}</TableCell>
+                     <TableCell>{formatarPreco(produto.preco)}</TableCell>
                      <TableCell>
-                        <Link to={`/reserva/${produto.id}`}>Comprar</Link>
+                        <button onClick={() => handleSubmit(produto.id, login.id)}>Reservar</button>
                      </TableCell>
                      {login.tipoDeUsuario === 'ADMIN' &&
                         <>
@@ -73,12 +88,12 @@ const ListagemProdutos = (props) => {
 
 const mapStateToProps = state => ({
    produtos: state.produtos,
-   estado: state,
    login: state.login
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar: (id) => dispatch(deletarProduto(id)),
+   deletar_produto: (id) => dispatch(deletar(id)),
+   adicionar_no_carrinho: (ids) => dispatch(adicionar(ids))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemProdutos);

@@ -1,17 +1,50 @@
-export const buscarHistorico = (idUsuario, reservas, produtos) => {
-   let historico = []
-   reservas = reservas.filter(reserva => reserva.idUsuario === idUsuario)
-   
-   reservas.forEach(reserva => {
-      produtos.forEach(produto => {
-         console.log(reserva.dataReserva)
-         if(produto.id === reserva.idProduto){
-            historico.push({
-               produto,
-               reserva
-            })
-         }
-      })
+import axios from 'axios'
+
+export const enviar_email = async (pedido, reservas, produtos, usuario) => {
+   produtos = reservas.map(reserva => {
+      const produto = produtos.find(produto => produto.id === reserva.id_produto)
+
+      return {
+         nome: produto.nome,
+         descricao: produto.descricao,
+         preco: produto.preco,
+         quantidade: reserva.quantidade
+      }
    })
-   return historico
+
+   const pedido_enviar = {
+      numero_pedido: pedido.numero_pedido,
+      total: pedido.total,
+      data_pedido: pedido.data_pedido,
+      usuario: {
+         nome: usuario.nome,
+         email: usuario.email
+      },
+      reservas: [
+         ...produtos
+      ]
+   }
+
+   await axios.post(process.env.REACT_APP_AWS_ENVIO_EMAIL, {
+      pedido: pedido_enviar
+   });
+}
+
+export const preparar_reservas = (carrinho, id_usuario, numero_pedido) => {
+   const reserva = carrinho.filter((item) => (item.id_usuario === id_usuario))
+
+   return reserva.map((item) => {
+      return {
+         id_produto: item.id_produto,
+         quantidade: item.quantidade,
+         numero_pedido
+      }
+   })
+}
+
+export const preparar_pedido = (pedido) => {
+   return {
+      ...pedido,
+      data_pedido: Date.now()
+   }
 }

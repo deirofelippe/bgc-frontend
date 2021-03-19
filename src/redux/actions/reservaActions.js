@@ -1,13 +1,6 @@
-export const adicionarReserva = (dados) => {
+export const finalizar = (dados) => {
    return {
-      type: 'ADICIONAR_RESERVA',
-      dados
-   }
-}
-
-export const deletarReserva = (dados) => {
-   return {
-      type: 'CANCELAR_RESERVA',
+      type: 'FINALIZAR_RESERVA',
       dados
    }
 }

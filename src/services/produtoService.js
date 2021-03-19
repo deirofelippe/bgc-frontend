@@ -1,10 +1,7 @@
-export const buscarProduto = (produtos, id) => {
+const buscar = (produtos, id) => {
    return produtos.find(produto => produto.id === id)
 }
 
-export const validarProduto = (produto) => {
-   if(produto.id ){
-      return true
-   }
-   return false
-}
+module.exports = {
+   buscar,
+};

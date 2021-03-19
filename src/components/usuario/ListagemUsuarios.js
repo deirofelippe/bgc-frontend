@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletarUsuario } from '../../redux/actions/usuarioActions';
+import { deletar } from '../../redux/actions/usuarioActions';
 
 const ListagemUsuarios = (props) => {
    const useStyles = makeStyles({
@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-   deletar: (id) => dispatch(deletarUsuario(id)),
+   deletar: (id) => dispatch(deletar(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListagemUsuarios);
