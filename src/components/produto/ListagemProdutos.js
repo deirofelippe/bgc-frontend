@@ -63,7 +63,9 @@ const ListagemProdutos = (props) => {
                      <TableCell>
                         <Link to={`/produto/${produto.id}`}>{produto.nome}</Link>
                      </TableCell>
-                     <TableCell>{produto.descricao}</TableCell>
+                     <TableCell>
+                        {produto.descricao}
+                     </TableCell>
                      <TableCell>{formatarPreco(produto.preco)}</TableCell>
                      <TableCell>
                         <button onClick={() => handleSubmit(produto.id, login.id)}>Reservar</button>
