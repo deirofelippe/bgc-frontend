@@ -95,6 +95,7 @@ const Login = props => {
                   required
                   fullWidth
                   id="email"
+                  col
                   label="Email"
                   name="email"
                   autoComplete="email"
