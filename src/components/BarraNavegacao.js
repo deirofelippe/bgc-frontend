@@ -17,11 +17,6 @@ const useStyles = makeStyles({
 
 const BarraNavegacao = (props) => {
    const classes = useStyles();
-   const [value, setValue] = React.useState(0);
-
-   const handleChange = (event, newValue) => {
-      setValue(newValue);
-   };
 
    let history = useHistory()
 
@@ -41,13 +36,7 @@ const BarraNavegacao = (props) => {
 
    return (
       <Paper square className={classes.root}>
-         <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="secondary"
-            textColor="secondary"
-            aria-label="icon label tabs example"
-         >
+         <Tabs>
             <Tab label="Listar produtos" to="/" component={Link} />
 
             {login.tipo_de_usuario === 'ADMIN' &&
