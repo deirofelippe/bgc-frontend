@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
    colorError: {
       color: theme.palette.error.dark
    },
+   inputBorderColor: {
+      borderColor: theme.palette.error.dark
+   },
 }));
 
 const Login = props => {
@@ -46,9 +49,7 @@ const Login = props => {
       senha: '123'
    })
 
-   const [msg, setMsg] = useState({
-      msg: ''
-   })
+   const [msg, setMsg] = useState('')
 
    let history = useHistory()
 
@@ -65,7 +66,7 @@ const Login = props => {
          props.fazer_login({ login, usuarios })
          history.push('/')
       } else {
-         setMsg({ msg: 'Dados estão errados ou não existe' })
+         setMsg('Dados estão errados ou não existe')
       }
    }
 
@@ -80,7 +81,7 @@ const Login = props => {
                Login
             </Typography>
             <Typography variant="body2" className={classes.colorError} align="center">
-               {msg.msg}
+               {msg}
             </Typography>
             <form
                onSubmit={(event) => handleSubmit(event)}
@@ -98,6 +99,7 @@ const Login = props => {
                   name="email"
                   autoComplete="email"
                   autoFocus
+                  className={classes.inputColor}
                   value={login.email}
                   onChange={handleChange}
                />
