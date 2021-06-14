@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
+import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles({
    root: {
@@ -36,48 +37,49 @@ const BarraNavegacao = (props) => {
 
    return (
       <Paper square className={classes.root}>
-         <Tabs>
-            <Tab label="Listar produtos" to="/" component={Link} />
+         <AppBar position="sticky">
+            <Tabs>
+               <Tab label="Listar produtos" to="/" component={Link} />
 
-            {login.tipo_de_usuario === 'ADMIN' &&
-               <>
-                  <Tab  to="/produto/formulario"
+               {login.tipo_de_usuario === 'ADMIN' &&
+                  <>
+                     <Tab to="/produto/formulario"
                         label="Cadastrar produto"
                         component={Link} />
-                  <Tab  to="/usuarios"
+                     <Tab to="/usuarios"
                         label="Listar usuários"
                         component={Link} />
-                  <Tab  to="/usuario/formulario"
+                     <Tab to="/usuario/formulario"
                         label="Cadastrar usuário"
                         component={Link} />
-               </>
-            }
+                  </>
+               }
 
-            {login.logado === false
-               ? <Tab   to="/login"
-                        label="Login"
-                        component={Link} />
-               :
-               <>
-                  <Tab  to="/pedidos"
+               {login.logado === false
+                  ? <Tab to="/login"
+                     label="Login"
+                     component={Link} />
+                  :
+                  <>
+                     <Tab to="/pedidos"
                         label="Historico de pedidos"
                         component={Link} />
 
-                  <Tab  to="/carrinho" 
-                        icon={<ShoppingCartSharpIcon />} 
+                     <Tab to="/carrinho"
+                        icon={<ShoppingCartSharpIcon />}
                         label={qtd_itens_carrinho}
                         component={Link} />
 
-                  <Tab  to={`/usuario/${login.id}`} 
+                     <Tab to={`/usuario/${login.id}`}
                         label={`Olá, ${login.nome}`}
                         component={Link} />
 
-                  <Tab  onClick={handleLogout}
+                     <Tab onClick={handleLogout}
                         label="Logout" />
-               </>
-            }
-
-         </Tabs>
+                  </>
+               }
+            </Tabs>
+         </AppBar>
       </Paper>
    );
 }

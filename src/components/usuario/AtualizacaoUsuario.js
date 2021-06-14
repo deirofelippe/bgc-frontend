@@ -65,7 +65,6 @@ const AtualizacaoUsuario = props => {
    let history = useHistory()
    const [usuario, setUsuario] = useState(iniciar_estado_usuario())
    const [endereco, setEndereco] = useState(iniciar_estado_endereco())
-   const [cepFoiBuscado, setCepFoiBuscado] = useState(false)
    const [msg, setMsg] = useState('')
 
    const handleChangeEndereco = event => {
@@ -86,7 +85,6 @@ const AtualizacaoUsuario = props => {
          estado: dados.uf, cidade: dados.localidade,
          bairro: dados.bairro, endereco: dados.logradouro
       })
-      await setCepFoiBuscado(true)
    }
 
    const handleSubmit = async (event) => {
