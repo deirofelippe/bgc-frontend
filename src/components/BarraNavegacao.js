@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AppBar from '@material-ui/core/AppBar';
 
 const useStyles = makeStyles({
@@ -66,7 +66,7 @@ const BarraNavegacao = (props) => {
                         component={Link} />
 
                      <Tab to="/carrinho"
-                        icon={<ShoppingCartSharpIcon />}
+                        icon={<ShoppingCartIcon />}
                         label={qtd_itens_carrinho}
                         component={Link} />
 

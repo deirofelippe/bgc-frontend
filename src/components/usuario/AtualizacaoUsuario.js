@@ -8,7 +8,6 @@ import { validar_email } from '../../utils/validacoes';
 
 
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -144,11 +143,8 @@ const AtualizacaoUsuario = props => {
       <Container component="main" maxWidth="sm">
          <CssBaseline />
          <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-               <LockOutlinedIcon />
-            </Avatar>
             <Typography component="h1" variant="h5">
-               Sign up
+               Atualizar usuário
             </Typography>
             <form className={classes.form} noValidate onSubmit={(event) => handleSubmit(event)}>
                <Grid container spacing={2}>
