@@ -1,13 +1,13 @@
-## Desafio GBC Loja
+# Desafio GBC Loja
 
 [Teste o site clicando aqui ;)](http://bgc-frontend.s3-website-sa-east-1.amazonaws.com/)
 
-# Conteudos
+## Conteudos
 
 - [Screenshots](#v30-e-v20)
 - [Como usar](#como-usar)
 
-# v3.0 e v2.0
+## v3.0 e v2.0
 
 - Listagem de produtos sem admin
 
@@ -34,7 +34,7 @@
 
 [Vídeo da versão 2.0](https://youtu.be/kWpBPtolxFw)
 
-# Como usar
+## Como usar
 
 > **Nota:** para usar o bgc-frontend, [instale o bgc-backend-serverless](https://github.com/felippedesouza/bgc-backend-serverless)
 
