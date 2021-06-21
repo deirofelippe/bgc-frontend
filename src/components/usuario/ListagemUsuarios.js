@@ -76,7 +76,7 @@ const ListagemUsuarios = (props) => {
                               ><DeleteIcon /></Link>
                               <Link
                                  component={LinkRouterDom}
-                                 to={`/usuario/atualizacao/${usuario.id}`}
+                                 to={`/usuario/${usuario.id}`}
                               ><EditIcon /></Link>
                            </TableCell>
                         </TableRow>

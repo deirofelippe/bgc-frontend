@@ -90,11 +90,13 @@ const ListagemProdutos = (props) => {
                   {produtos.map((produto) => (
                      <Grid item key={produto.id} xs={12} sm={6} md={4}>
                         <Card className={classes.card}>
-                           <CardMedia
-                              className={classes.cardMedia}
-                              image="https://source.unsplash.com/random"
-                              title="Image title"
-                           />
+                           <LinkRouterDom to={`/produto/${produto.id}`}>
+                              <CardMedia
+                                 className={classes.cardMedia}
+                                 image="https://source.unsplash.com/random"
+                                 title="Image title"
+                              />
+                           </LinkRouterDom>
                            <CardContent className={classes.cardContent}>
                               <Typography gutterBottom variant="h5" component="h2">
                                  <Link to={`/produto/${produto.id}`} variant="body2" component={LinkRouterDom}>{produto.nome}</Link>
