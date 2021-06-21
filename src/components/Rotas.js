@@ -5,7 +5,6 @@ import ListagemUsuarios from './usuario/ListagemUsuarios';
 import FormularioProduto from './produto/FormularioProduto';
 import FormularioUsuario from './usuario/FormularioUsuario';
 import AtualizacaoProduto from './produto/AtualizacaoProduto';
-import AtualizacaoUsuario from './usuario/AtualizacaoUsuario';
 import Produto from './produto/Produto';
 import Usuario from './usuario/Usuario';
 import Login from './Login';
@@ -39,9 +38,6 @@ const Rotas = props => (
    </Switch>
    
    <Switch>
-      <Route exact path="/usuario/atualizacao/:id">
-         <AtualizacaoUsuario />
-      </Route>
       <Route path="/usuario/formulario">
          <FormularioUsuario />
       </Route>
