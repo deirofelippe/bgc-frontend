@@ -10,18 +10,18 @@
 # v3.0 e v2.0
 
 <p align="center">
-   <img src="./img/v3-1.png" width="49%" height="49%" />
-   <img src="./img/v2-1.png" width="49%" height="49%" />
+   <img src="./img/v3-1.png" width="100%" height="100%" />
+   <img src="./img/v2-1.png" width="100%" height="100%" />
 </p>
 
 <p align="center">
-   <img src="./img/v3-2.png" width="49%" height="49%" />
-   <img src="./img/v2-2.png" width="49%" height="49%" />
+   <img src="./img/v3-2.png" width="100%" height="100%" />
+   <img src="./img/v2-2.png" width="100%" height="100%" />
 </p>
 
 <p align="center">
-   <img src="./img/v3-3.png" width="49%" height="49%" />
-   <img src="./img/v2-3.png" width="49%" height="49%" />
+   <img src="./img/v3-3.png" width="100%" height="100%" />
+   <img src="./img/v2-3.png" width="100%" height="100%" />
 </p>
 
 [Vídeo da versão 3.0](https://youtu.be/_owP1BYJytY)

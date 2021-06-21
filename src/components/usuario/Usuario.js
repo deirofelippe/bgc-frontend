@@ -71,6 +71,7 @@ const Usuario = props => {
    }
    const handleChangeUsuario = event => {
       const { name, value } = event.target
+      console.log(`${name} ${value}`)
       setUsuario({ ...usuario, [name]: value })
    }
 
