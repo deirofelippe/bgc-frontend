@@ -12,7 +12,6 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -196,12 +195,12 @@ const Usuario = props => {
                               <Select
                                  labelId="select-outlined-label"
                                  id="select-outlined"
-                                 name="tipo"
-                                 value={usuario.tipo}
+                                 name="tipo_de_usuario"
+                                 value={usuario.tipo_de_usuario}
                                  onChange={handleChangeUsuario}
                                  label="Tipo de usuário"
                               >
-                                 <MenuItem value="CLIENTE" selected>Cliente</MenuItem>
+                                 <MenuItem value="CLIENTE">Cliente</MenuItem>
                                  <MenuItem value="ADMIN">Administrador</MenuItem>
                               </Select>
                            </FormControl>
