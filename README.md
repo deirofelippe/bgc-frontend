@@ -5,18 +5,19 @@
 ## Conteudos
 
 - [Screenshots](#v30-e-v20)
+- [Vídeos](#videos)
 - [Como usar](#como-usar)
 
 ## v3.0 e v2.0
 
-- Listagem de produtos sem admin
+- Listagem de produtos como cliente
 
 <p align="center">
    <img src="./img/v3-1.png" width="100%" height="100%" />
    <img src="./img/v2-1.png" width="100%" height="100%" />
 </p>
 
-- Listagem de produtos com admin
+- Listagem de produtos como admin
 
 <p align="center">
    <img src="./img/v3-2.png" width="100%" height="100%" />
@@ -29,6 +30,8 @@
    <img src="./img/v3-3.png" width="100%" height="100%" />
    <img src="./img/v2-3.png" width="100%" height="100%" />
 </p>
+
+## Videos
 
 [Vídeo da versão 3.0](https://youtu.be/_owP1BYJytY)
 
