@@ -2,7 +2,6 @@ import React from 'react';
 import { Link as LinkRouterDom, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
