@@ -4,7 +4,7 @@
 
 # Conteudos
 
-- [Screenshots](#v3.0-e-v2.0)
+- [Screenshots](#v30-e-v20)
 - [Como usar](#como-usar)
 
 # v3.0 e v2.0
