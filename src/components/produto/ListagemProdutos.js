@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import { useSnackbar } from 'notistack';
 
 const useStyles = makeStyles((theme) => ({
    icon: {
@@ -51,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 const ListagemProdutos = (props) => {
    const classes = useStyles();
    const history = useHistory();
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleDelete = (id) => {
       if (window.confirm("Tem certeza que deseja deletar?")) {
@@ -64,6 +66,11 @@ const ListagemProdutos = (props) => {
          return
       }
       props.adicionar_no_carrinho({ id_produto, id_usuario })
+      enqueueSnackbar('Item adicionado no carrinho',
+         {
+            variant: 'info',
+            autoHideDuration: 1000,
+         })
    }
 
    const handleEdit = (id_produto) => {
@@ -82,7 +89,7 @@ const ListagemProdutos = (props) => {
    const login = props.login
 
    return (
-      <React.Fragment>
+      <>
          <CssBaseline />
          <main>
             <Container className={classes.cardGrid} maxWidth="md">
@@ -94,7 +101,7 @@ const ListagemProdutos = (props) => {
                               <CardMedia
                                  className={classes.cardMedia}
                                  image="https://source.unsplash.com/random"
-                                 title="Image title"
+                                 title={`${produto.nome}`}
                               />
                            </LinkRouterDom>
                            <CardContent className={classes.cardContent}>
@@ -132,7 +139,7 @@ const ListagemProdutos = (props) => {
                </Grid>
             </Container>
          </main>
-      </React.Fragment>
+      </>
    )
 }
 
