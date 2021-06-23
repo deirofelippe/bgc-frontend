@@ -24,20 +24,19 @@ npm run start
 ## v3.0 e v2.0
 [(ir para o sumário)](#sumário)
 
-- Listagem de produtos como cliente
-
-   ![](./img/v3-1.png)
-   ![](./img/v2-1.png)
-
 - Listagem de produtos como admin
 
-   ![](./img/v3-2.png)
-   ![](./img/v2-2.png)
+<p align="center">
+   <img src="./img/v3-1.png" width="75%" height="75%" />
+   <img src="./img/v2-1.png" width="75%" height="75%" />
+</p>
 
 - Historico de pedidos
 
-   ![](./img/v3-3.png)
-   ![](./img/v2-3.png)
+<p align="center">
+   <img src="./img/v3-2.png" width="75%" height="75%" />
+   <img src="./img/v2-2.png" width="75%" height="75%" />
+</p>
 
 ## Videos
 [(ir para o sumário)](#sumário)
