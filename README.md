@@ -24,6 +24,8 @@ npm run start
 ## v3.0 e v2.0
 :arrow_up: [ir pro sumario](#sumario)
 
+![](./screenshots/usando.gif)
+
 - Listagem de produtos como admin
 
 <p align="center">
