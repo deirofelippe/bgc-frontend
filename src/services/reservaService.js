@@ -25,9 +25,11 @@ export const enviar_email = async (pedido, reservas, produtos, usuario) => {
       ]
    }
 
-   await axios.post(process.env.REACT_APP_URL_POST_PEDIDO, {
+   const response = await axios.post(process.env.REACT_APP_URL_POST_PEDIDO, {
       pedido: pedido_enviar
    });
+
+   return response.data.url_payment
 }
 
 export const preparar_reservas = (carrinho, id_usuario, numero_pedido) => {

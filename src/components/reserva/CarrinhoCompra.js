@@ -104,10 +104,12 @@ const CarrinhoCompra = (props) => {
       await props.finalizar_reserva(reservas)
       await props.adicionar_pedido(pedido)
 
-      enviar_email(pedido, reservas, props.produtos, props.login)
+      const url_payment = await enviar_email(pedido, reservas, props.produtos, props.login)
 
       props.limpar_carrinho(id_usuario)
       setTotalExibir(formatar_valor(0))
+
+      window.location.href = url_payment
    }
 
    const [totalExibir, setTotalExibir] = useState(formatar_valor(0))
