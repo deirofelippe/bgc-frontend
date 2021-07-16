@@ -26,6 +26,8 @@ npm run start
 
 :arrow_up: [ir pro sumario](#sumario)
 
+![](./screenshots/usando.gif)
+
 - Listagem de produtos como admin
 
 <p align="center">
