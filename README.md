@@ -1,14 +1,15 @@
 # Desafio GBC Loja (Frontend)
 
-[Teste o site clicando aqui ;)](http://bgc-frontend.s3-website-sa-east-1.amazonaws.com/)
+[Teste o site clicando aqui ;)](https://ecstatic-shannon-40084c.netlify.app/)
 
-## Sumario 
+## Sumario
 
 - [Como usar](#como-usar)
 - [Screenshots](#v30-e-v20)
 - [Vídeos](#videos)
 
 ## Como usar
+
 :arrow_up: [ir pro sumario](#sumario)
 
 **Nota:** para usar o bgc-frontend, [instale o bgc-backend-serverless](https://github.com/felippedesouza/bgc-backend-serverless)
@@ -22,6 +23,7 @@ npm run start
 ```
 
 ## v3.0 e v2.0
+
 :arrow_up: [ir pro sumario](#sumario)
 
 ![](./screenshots/usando.gif)
@@ -41,6 +43,7 @@ npm run start
 </p>
 
 ## Videos
+
 :arrow_up: [ir pro sumario](#sumario)
 
 <p align="center">

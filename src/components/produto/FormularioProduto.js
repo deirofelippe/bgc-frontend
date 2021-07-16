@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
    paper: {
@@ -44,9 +46,10 @@ const FormularioProduto = props => {
    const estadoInicial = () => {
       return {
          id: v1(),
-         nome: '',
-         descricao: '',
-         preco: '',
+         nome: 'a',
+         descricao: 'b',
+         preco: '125',
+         imagem: undefined,
       }
    }
 
@@ -55,7 +58,23 @@ const FormularioProduto = props => {
 
    const handleChange = event => {
       const { name, value } = event.target
+      console.log(event.target.files[0])
       setProduto({ ...produto, [name]: value })
+   }
+
+   const uploadFile = async () => {
+      let formData = new FormData();
+      formData.append("imagem", produto.imagem);
+      formData.append("nome", produto.nome);
+      formData.append("descricao", produto.descricao);
+      formData.append("preco", produto.preco);
+
+      const url = 'https://ckszbols2c.execute-api.sa-east-1.amazonaws.com/dev/produto'
+      const headers = {
+         "Content-Type": `multipart/form-data; boundary=${formData._boundary}`,
+      }
+
+      await axios.post(url, formData, headers)
    }
 
    const limparCampos = () => {
@@ -141,6 +160,7 @@ const FormularioProduto = props => {
                   value={produto.preco}
                   onChange={handleChange}
                />
+               
                <Button
                   type="submit"
                   fullWidth
