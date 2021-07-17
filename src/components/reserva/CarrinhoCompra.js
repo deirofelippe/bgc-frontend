@@ -104,8 +104,6 @@ const CarrinhoCompra = (props) => {
       await props.finalizar_reserva(reservas)
       await props.adicionar_pedido(pedido)
 
-      console.log('pedido')
-
       const url_payment = await enviar_email(pedido, reservas, props.produtos, props.login)
 
       props.limpar_carrinho(id_usuario)

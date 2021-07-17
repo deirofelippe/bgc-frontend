@@ -26,6 +26,7 @@ export const enviar_email = async (pedido, reservas, produtos, usuario) => {
    }
 
    console.log(pedido_enviar)
+   console.log(process.env.REACT_APP_URL_POST_PEDIDO)
    const response = await axios.post(process.env.REACT_APP_URL_POST_PEDIDO, {
       pedido: pedido_enviar
    });
