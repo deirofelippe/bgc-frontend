@@ -1,6 +1,8 @@
-# Desafio GBC Loja (Frontend)
+# Desafio BGC Loja (Frontend)
 
 [Teste o site clicando aqui ;)](https://ecstatic-shannon-40084c.netlify.app/)
+
+[Repositório backend](https://github.com/felippedesouza/bgc-backend-serverless)
 
 ## Sumario
 
